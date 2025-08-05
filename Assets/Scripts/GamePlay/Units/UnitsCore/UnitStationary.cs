@@ -5,7 +5,7 @@ namespace Game.GamePlayCore.Units
 {
     public class UnitStationary : MonoBehaviour, IAttackable
     {
-        public void UpdateAttack()
+        public void UpdateAttack(float  deltaTime)
         {
             
         }
