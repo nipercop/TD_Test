@@ -1,6 +1,7 @@
 using Game.GamePlayCore.Interfaces;
 using Game.GamePlayCore.Interfaces.Units;
 using Game.GamePlayCore.Stats;
+using Game.GamePlayCore.Systems.Spawners.Data;
 using UnityEngine;
 
 namespace Game.GamePlayCore.Units
@@ -24,6 +25,11 @@ namespace Game.GamePlayCore.Units
         protected virtual void Die()
         {
             Destroy(gameObject);
+        }
+
+        public virtual void SetSpawnData(SpawnData spawnData)
+        {
+            _stats = spawnData.NewStats;
         }
         
         

@@ -1,9 +1,10 @@
+using Game.GamePlayCore.Systems.Spawners.Data;
 using UnityEngine;
 
 namespace Game.GamePlayCore.Interfaces.Systems.Spawners
 {
     public interface ISpawnerSystem
     {
-        void Spawn(GameObject unitPrefab, Vector3 position, Vector3 destination);
+        void Spawn(SpawnData spawnData);
     }
 }
