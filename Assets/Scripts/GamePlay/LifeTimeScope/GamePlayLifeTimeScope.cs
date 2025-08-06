@@ -14,7 +14,7 @@ namespace Game.LifeTimeScope.GamePlayCore
         protected override void Configure(IContainerBuilder builder)
         {
             builder.RegisterComponentInHierarchy<GamePlayUpdater>().As<IGamePlayUpdater>();
-            builder.RegisterComponentInHierarchy<EnemySpawnerSystem>().As<ISpawnerSystem>();
+            builder.Register<EnemySpawnerSystem>(Lifetime.Scoped).As<ISpawnerSystem>();
             builder.RegisterComponentInHierarchy<GamePlayStateSystem>();
         }
     }
