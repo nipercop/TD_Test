@@ -6,7 +6,7 @@ namespace Game.GamePlayCore.Systems.Units
 {
     public class UnitsSystem : MonoBehaviour
     {
-        private List<DamagableUnit> _units = new List<DamagableUnit>();
+        [SerializeField] private List<DamagableUnit> _units = new List<DamagableUnit>();
 
         public void AddUnit(DamagableUnit unit)
         {

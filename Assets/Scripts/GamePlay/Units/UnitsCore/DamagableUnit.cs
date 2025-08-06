@@ -1,8 +1,11 @@
 using Game.GamePlayCore.Interfaces;
+using Game.GamePlayCore.Interfaces.Systems;
 using Game.GamePlayCore.Interfaces.Units;
 using Game.GamePlayCore.Stats;
 using Game.GamePlayCore.Systems.Spawners.Data;
+using Game.GamePlayCore.Systems.Units;
 using UnityEngine;
+using VContainer;
 
 namespace Game.GamePlayCore.Units
 {
@@ -10,6 +13,8 @@ namespace Game.GamePlayCore.Units
     {
         public int Health;
         public StatsUnit Stats;
+        [Inject] protected UnitsSystem _unitsSystem;
+        [Inject] protected IGamePlayUpdater _gamePlayUpdater;
         
         protected virtual void Start() { }
 
@@ -35,7 +40,6 @@ namespace Game.GamePlayCore.Units
         
         public virtual void DoUpdate(float deltaTime)
         {
-            
         }
         
     }

@@ -1,3 +1,4 @@
+using System;
 using Game.GamePlayCore.Interfaces;
 using Game.GamePlayCore.Interfaces.Units;
 using Game.GamePlayCore.Interfaces.Units.Logic.Attack;
@@ -14,8 +15,13 @@ namespace Game.GamePlayCore.Units
         {
             base.Start();
             _attackLogic = new SimpleAttack();
+            _gamePlayUpdater.AddUpdatable(this);
         }
-        
+
+        protected void OnDestroy()
+        {
+            _gamePlayUpdater.RemoveUpdatable(this);
+        }
 
         public override void DoUpdate(float deltaTime)
         {
