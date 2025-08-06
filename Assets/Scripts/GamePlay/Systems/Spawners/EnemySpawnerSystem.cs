@@ -1,6 +1,6 @@
 using System;
 using Game.GamePlayCore.Interfaces;
-using Game.GamePlayCore.Systems.Updater;
+using Game.GamePlayCore.Interfaces.Systems;
 using UnityEngine;
 using VContainer;
 
@@ -9,7 +9,7 @@ namespace Game.GamePlayCore.Systems.Spawners
     public class EnemySpawnerSystem : MonoBehaviour, IUpdatable
     {
 
-        [Inject] private GamePlayUpdater _updater;
+        [Inject] private IGamePlayUpdater _updater;
 
         void Start()
         {
