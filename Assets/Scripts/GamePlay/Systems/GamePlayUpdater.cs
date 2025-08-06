@@ -1,18 +1,33 @@
+using System.Collections.Generic;
+using Game.GamePlayCore.Interfaces;
+using Game.GamePlayCore.Interfaces.Systems;
 using UnityEngine;
 
 namespace Game.GamePlayCore.Systems.Updater
 {
-    public class GamePlayUpdater : MonoBehaviour
+    public class GamePlayUpdater : MonoBehaviour, IGamePlayUpdater
     {
-        
-        private MoveSystem _moveSystem = new MoveSystem();
-        private AttackSystem _attackSystem = new AttackSystem();
+       
+        private List<IUpdatable> _updatables = new List<IUpdatable>();
+
+        public void AddMoveable(IUpdatable updatable)
+        {
+            _updatables.Add(updatable);
+        }
+
+        public void RemoveMoveable(IUpdatable updatable)
+        {
+            _updatables.Remove(updatable);
+        }
         
         void Update()
         {
             float deltaTime = Time.deltaTime;
-            _moveSystem.DoUpdate(deltaTime);
-            _attackSystem.DoUpdate(deltaTime);
+            int count = _updatables.Count;
+            for (int i = 0; i < count; i++)
+            {
+                _updatables[i].DoUpdate(deltaTime);
+            }
         }
     }
 }
