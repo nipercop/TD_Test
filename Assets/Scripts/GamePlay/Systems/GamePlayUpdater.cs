@@ -10,13 +10,15 @@ namespace Game.GamePlayCore.Systems.Updater
        
         private List<IUpdatable> _updatables = new List<IUpdatable>();
 
-        public void AddMoveable(IUpdatable updatable)
+        public void AddUpdatable(IUpdatable updatable)
         {
+            Debug.Log("======== AddUpdatable");
             _updatables.Add(updatable);
         }
 
-        public void RemoveMoveable(IUpdatable updatable)
+        public void RemoveUpdatable(IUpdatable updatable)
         {
+            Debug.Log("======== RemoveUpdatable");
             _updatables.Remove(updatable);
         }
         

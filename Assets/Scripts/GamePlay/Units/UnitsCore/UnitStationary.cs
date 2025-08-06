@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Game.GamePlayCore.Units
 {
-    public class UnitStationary : DamagableUnit, IAttackable , IUpdatable
+    public class UnitStationary : DamagableUnit, IAttackable
     {
         
         protected override void Start()
@@ -18,9 +18,5 @@ namespace Game.GamePlayCore.Units
             
         }
 
-        public void DoUpdate(float deltaTime)
-        {
-            
-        }
     }
 }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Game.GamePlayCore.Units
 {
-    public class UnitMoveable : DamagableUnit , IMoveable , IUpdatable
+    public class UnitMoveable : DamagableUnit , IMoveable 
     {
         protected override void Start()
         {
@@ -17,9 +17,6 @@ namespace Game.GamePlayCore.Units
             
         }
 
-        public void DoUpdate(float deltaTime)
-        {
-            
-        }
+        
     }
 }
