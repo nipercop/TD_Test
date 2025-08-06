@@ -1,3 +1,4 @@
+using System;
 using Game.GamePlayCore.Interfaces;
 using Game.GamePlayCore.Interfaces.Units;
 using Game.GamePlayCore.Interfaces.Units.Logic.Move;
@@ -10,17 +11,14 @@ namespace Game.GamePlayCore.Units
     public class UnitMoveable : DamagableUnit //, IMoveable 
     {
         private IMoveLogic _moveLogic;
+        [SerializeField] private Vector3 _destination;
 
         protected override void Start()
         {
             base.Start();
-            _moveLogic = new SimpleMove();
+            _moveLogic = new SimpleMove(this);
+            _moveLogic.SetDestination(_destination);
         }
-
-        // public void UpdateMove(float deltaTime)
-        // {
-        //     
-        // }
 
         public override void SetSpawnData(SpawnData spawnData)
         {
@@ -32,7 +30,6 @@ namespace Game.GamePlayCore.Units
         {
             _moveLogic.DoUpdate(deltaTime);
         }
-        
-        
+
     }
 }

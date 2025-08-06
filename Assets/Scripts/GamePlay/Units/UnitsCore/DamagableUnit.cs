@@ -9,7 +9,7 @@ namespace Game.GamePlayCore.Units
     public abstract class DamagableUnit : MonoBehaviour , IDamagable, IUpdatable
     {
         public int Health;
-        public StatsUnit _stats;
+        public StatsUnit Stats;
         
         protected virtual void Start() { }
 
@@ -29,7 +29,7 @@ namespace Game.GamePlayCore.Units
 
         public virtual void SetSpawnData(SpawnData spawnData)
         {
-            _stats = spawnData.NewStats;
+            Stats = spawnData.NewStats;
         }
         
         

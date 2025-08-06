@@ -122,3 +122,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Health: 0
+  Stats:
+    Health: 1
+    MoveSpeed: 1
+    AttackSpeed: 1
+  _destination: {x: 0, y: 0, z: 0}

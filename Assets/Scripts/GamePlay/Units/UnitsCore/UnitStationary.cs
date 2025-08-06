@@ -16,10 +16,6 @@ namespace Game.GamePlayCore.Units
             _attackLogic = new SimpleAttack();
         }
         
-        // public void UpdateAttack(float  deltaTime)
-        // {
-        //     
-        // }
 
         public override void DoUpdate(float deltaTime)
         {

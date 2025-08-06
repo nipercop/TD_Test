@@ -1,7 +1,6 @@
-using UnityEngine;
-
 namespace Game.GamePlayCore.Stats
 {
+    [System.Serializable]
     public class StatsUnit
     {
         public int Health;
