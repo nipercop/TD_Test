@@ -12,13 +12,11 @@ namespace Game.GamePlayCore.Systems.Updater
 
         public void AddUpdatable(IUpdatable updatable)
         {
-            Debug.Log("======== AddUpdatable");
             _updatables.Add(updatable);
         }
 
         public void RemoveUpdatable(IUpdatable updatable)
         {
-            Debug.Log("======== RemoveUpdatable");
             _updatables.Remove(updatable);
         }
         

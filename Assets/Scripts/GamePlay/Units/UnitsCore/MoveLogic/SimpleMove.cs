@@ -11,6 +11,7 @@ namespace Game.GamePlayCore.Units.Logic.Move
         public SimpleMove(DamagableUnit unit)
         {
             _unit = unit;
+            _destination =  _unit.transform.position;
         }
         
         public void DoUpdate(float deltaTime)
