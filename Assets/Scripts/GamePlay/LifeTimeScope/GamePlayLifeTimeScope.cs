@@ -1,4 +1,6 @@
 using Game.GamePlayCore.Interfaces.Systems;
+using Game.GamePlayCore.Interfaces.Systems.Spawners;
+using Game.GamePlayCore.Systems;
 using Game.GamePlayCore.Systems.Spawners;
 using Game.GamePlayCore.Systems.Updater;
 using UnityEngine;
@@ -12,7 +14,8 @@ namespace Game.LifeTimeScope.GamePlayCore
         protected override void Configure(IContainerBuilder builder)
         {
             builder.RegisterComponentInHierarchy<GamePlayUpdater>().As<IGamePlayUpdater>();
-            builder.RegisterComponentInHierarchy<EnemySpawnerSystem>();
+            builder.RegisterComponentInHierarchy<EnemySpawnerSystem>().As<ISpawnerSystem>();
+            builder.RegisterComponentInHierarchy<GamePlayStateSystem>();
         }
     }
 }

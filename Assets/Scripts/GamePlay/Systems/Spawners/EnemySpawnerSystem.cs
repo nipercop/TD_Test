@@ -1,32 +1,25 @@
 using System;
-using Game.GamePlayCore.Interfaces;
-using Game.GamePlayCore.Interfaces.Systems;
+using System.Collections.Generic;
+using Game.GamePlayCore.Interfaces.Systems.Spawners;
+using Game.GamePlayCore.Units;
 using UnityEngine;
 using VContainer;
 
 namespace Game.GamePlayCore.Systems.Spawners
 {
-    public class EnemySpawnerSystem : MonoBehaviour, IUpdatable
+    public class EnemySpawnerSystem : MonoBehaviour ,  ISpawnerSystem
     {
-
-        [Inject] private IGamePlayUpdater _updater;
-
+        private List<DamagableUnit> _units = new List<DamagableUnit>();
+        
         void Start()
         {
-            _updater.AddUpdatable(this);
         }
 
         private void OnDestroy()
         {
-            _updater.RemoveUpdatable(this);
         }
 
-        void Update()
-        {
-        
-        }
-
-        public void DoUpdate(float deltaTime)
+        public void Spawn(GameObject unitPrefab, Vector3 position, Vector3 destination)
         {
             
         }
