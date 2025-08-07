@@ -15,7 +15,8 @@ namespace Game.GamePlayCore.Units
         [SerializeField] private SimpleAttack _attackLogic;
         
         public UnitsSystem  UnitsSystem => _unitsSystem;
-        
+        public Transform UnitTransform => transform;
+
         protected override void Start()
         {
             base.Start();

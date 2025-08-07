@@ -8,5 +8,6 @@ namespace Game.GamePlayCore.Interfaces.Units
     {
         StatsUnit Stats { get; }
         UnitsSystem UnitsSystem { get; }
+        Transform UnitTransform { get; }
     }
 }

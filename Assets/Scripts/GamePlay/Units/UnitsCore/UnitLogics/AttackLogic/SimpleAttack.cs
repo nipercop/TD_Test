@@ -9,9 +9,9 @@ namespace Game.GamePlayCore.Units.Logic.Attack
     public class SimpleAttack: MonoBehaviour //,  IAttackLogic
     {
         private float _timerAttack = 0;
-        private DamagableUnit _target;
+        [SerializeField] private DamagableUnit _target;
         
-        [SerializeField] private float _radiusAttack = 10;
+        [SerializeField] private float _radiusAttack = 5;
         
         public void SetStats(StatsUnit statsUnit)
         {
@@ -20,10 +20,10 @@ namespace Game.GamePlayCore.Units.Logic.Attack
         
         public void DoUpdate(IAttackable attackableUnit, float deltaTime)
         {
-            if (!_target)
+            if (_target != null)
             {
                 _timerAttack -= deltaTime;
-                TryAttackTarget();
+                TryAttackTarget( attackableUnit);
             }
             else
             {
@@ -33,16 +33,41 @@ namespace Game.GamePlayCore.Units.Logic.Attack
 
         private void FindTarget(IAttackable attackableUnit)
         {
+            Vector3 attackerPosition = attackableUnit.UnitTransform.position;
             var targets = attackableUnit.UnitsSystem.Units;
-            
+            float distance = float.MaxValue;
+            DamagableUnit target = null;
+            for (var i = 0; i < targets.Count; i++)
+            {
+                var unit = targets[i];
+                float sqrDist = GetSqrDistance(attackerPosition, unit);
+                if (sqrDist < distance && sqrDist < _radiusAttack * _radiusAttack)
+                {
+                    distance = sqrDist;
+                    target = unit;
+                }
+            }
+            _target = target;
         }
 
-        private void TryAttackTarget()
+        private void TryAttackTarget(IAttackable attackableUnit)
         {
+            float sqrDist = GetSqrDistance(attackableUnit.UnitTransform.position, _target);
+            if (sqrDist > _radiusAttack * _radiusAttack)
+            {
+                _target = null;
+                return;
+            }
+
             if (_timerAttack <= 0)
             {
                 _timerAttack = .5f;
             }
+        }
+
+        private float GetSqrDistance(Vector3 position1 , DamagableUnit target)
+        {
+            return  (target.transform.position - position1).sqrMagnitude;
         }
     }
 }
