@@ -67,7 +67,7 @@ namespace Game.GamePlayCore.Units.Logic.Attack
             return  (target.transform.position - position1).sqrMagnitude;
         }
 
-        // TODO nipercop: можно было сделать через ProjectileSpawner, но идею в принципе поняли
+        // TODO nipercop: в будущем можно сделать через ProjectileSpawner, но идею в принципе поняли
         private void CreateProjectile(GameObject prefab, Vector3 position, DamagableUnit target)
         {
             var go = Instantiate(prefab, position, Quaternion.identity);

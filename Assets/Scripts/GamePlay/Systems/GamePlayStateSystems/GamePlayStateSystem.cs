@@ -14,7 +14,7 @@ namespace Game.GamePlayCore.Systems.GamePlayState
     {
         [Inject] private IGamePlayUpdater _updater;
         [Inject] private ISpawnerSystem _enemySpawnerSystem;
-
+        [Inject] private IObjectResolver _resolver;
         //[SerializeField] private float _timer = 0;
 
         private GameStateMachineCore[] _states ;
@@ -32,7 +32,7 @@ namespace Game.GamePlayCore.Systems.GamePlayState
             {
                 new GameStateIdle(this),
                 new GameStateSpawnEnemies(this),
-                new GameStateWaitForEndWave(this),
+                CreateWithInject(new GameStateWaitForEndWave(this)),
                 new GameStateEndGame(this)
             };
             _currentGameState = _states[0];
@@ -40,6 +40,12 @@ namespace Game.GamePlayCore.Systems.GamePlayState
             SetSpawnData();
             
             _updater.AddUpdatable(this);
+        }
+        
+        private T CreateWithInject<T>(T instance)
+        {
+            _resolver.Inject(instance);
+            return instance;
         }
 
         private void SetSpawnData()

@@ -1152,6 +1152,10 @@ PrefabInstance:
       propertyPath: 'autoInjectGameObjects.Array.data[0]'
       value: 
       objectReference: {fileID: 506595471}
+    - target: {fileID: 1713640561105350658, guid: 673e6f42ebf428c42a25094674b685be, type: 3}
+      propertyPath: 'autoInjectGameObjects.Array.data[1]'
+      value: 
+      objectReference: {fileID: 1457079452}
     - target: {fileID: 5239269601300705181, guid: 673e6f42ebf428c42a25094674b685be, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6.2619205
