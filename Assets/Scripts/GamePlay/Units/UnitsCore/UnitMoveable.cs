@@ -21,6 +21,7 @@ namespace Game.GamePlayCore.Units
 
         protected override void OnDestroy()
         {
+            base.OnDestroy();
             _unitsSystem.RemoveUnit(this);
         }
 

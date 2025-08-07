@@ -1,5 +1,6 @@
 using Game.GamePlayCore.Interfaces.Units;
 using Game.GamePlayCore.Interfaces.Units.Logic.Attack;
+using Game.GamePlayCore.Projectiles;
 using Game.GamePlayCore.Stats;
 using Game.GamePlayCore.Systems.Spawners.Data;
 using UnityEngine;
@@ -8,21 +9,16 @@ namespace Game.GamePlayCore.Units.Logic.Attack
 {
     public class SimpleAttack: MonoBehaviour //,  IAttackLogic
     {
-        private float _timerAttack = 0;
+        [SerializeField] private float _timerAttack = 0;
         [SerializeField] private DamagableUnit _target;
-        
         [SerializeField] private float _radiusAttack = 5;
-        
-        public void SetStats(StatsUnit statsUnit)
-        {
-            
-        }
+        [SerializeField] GameObject _projectile;
         
         public void DoUpdate(IAttackable attackableUnit, float deltaTime)
         {
             if (_target != null)
             {
-                _timerAttack -= deltaTime;
+                _timerAttack -= deltaTime * attackableUnit.Stats.AttackSpeed;
                 TryAttackTarget( attackableUnit);
             }
             else
@@ -61,13 +57,21 @@ namespace Game.GamePlayCore.Units.Logic.Attack
 
             if (_timerAttack <= 0)
             {
-                _timerAttack = .5f;
+                CreateProjectile(_projectile, transform.position, _target);
+                _timerAttack = 1f;
             }
         }
 
         private float GetSqrDistance(Vector3 position1 , DamagableUnit target)
         {
             return  (target.transform.position - position1).sqrMagnitude;
+        }
+
+        // TODO nipercop: можно было сделать через ProjectileSpawner, но идею в принципе поняли
+        private void CreateProjectile(GameObject prefab, Vector3 position, DamagableUnit target)
+        {
+            var go = Instantiate(prefab, position, Quaternion.identity);
+            go.GetComponent<SimpleProjectile>().SetTarget(target);
         }
     }
 }

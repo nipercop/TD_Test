@@ -125,10 +125,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Health: 0
-  Stats:
-    Health: 0
+  _stats:
+    Health: 10
     MoveSpeed: 0
-    AttackSpeed: 0
+    AttackSpeed: 1
   _attackLogic: {fileID: -147625777843741823}
 --- !u!114 &-147625777843741823
 MonoBehaviour:
@@ -142,3 +142,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fb57fbb2099340a4cb62bff9d81a5fcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _timerAttack: 0
+  _target: {fileID: 0}
+  _radiusAttack: 5
+  _projectile: {fileID: 670433690258237414, guid: a8d3c14e3f346b449ba5bcf64d3d2b37, type: 3}

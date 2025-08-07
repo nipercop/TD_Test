@@ -13,7 +13,7 @@ namespace Game.GamePlayCore.Units
     public abstract class DamagableUnit : MonoBehaviour , IDamagable, IUpdatable
     {
         public int Health;
-        protected StatsUnit _stats;
+        [SerializeField] protected StatsUnit _stats;
         
         [Inject] protected UnitsSystem _unitsSystem;
         [Inject] protected IGamePlayUpdater _gamePlayUpdater;

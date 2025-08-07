@@ -16,18 +16,7 @@ namespace Game.GamePlayCore.Units
         
         public UnitsSystem  UnitsSystem => _unitsSystem;
         public Transform UnitTransform => transform;
-
-        protected override void Start()
-        {
-            base.Start();
-            
-        }
-
-        public override void SetSpawnData(SpawnData spawnData)
-        {
-            base.SetSpawnData(spawnData);
-            _attackLogic.SetStats(_stats);
-        }
+        
 
         public override void DoUpdate(float deltaTime)
         {
