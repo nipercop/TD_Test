@@ -3,6 +3,7 @@ using Game.GamePlayCore.Systems.Spawners.Data;
 using Game.GamePlayCore.Units;
 using UnityEngine;
 using VContainer;
+using VContainer.Unity;
 using Object = UnityEngine.Object;
 
 namespace Game.GamePlayCore.Systems.Spawners
@@ -23,9 +24,10 @@ namespace Game.GamePlayCore.Systems.Spawners
             for (int i = 0; i < spawnData.CountSpawn; i++)
             {
                 var newPos = GetRandomedPosition(spawnData.Position);
-                var unit = Object.Instantiate(spawnData.Prefab, newPos, Quaternion.identity); 
-                _resolver.Inject(unit);
-                unit.GetComponent<DamagableUnit>().SetSpawnData(spawnData);
+                var unitGO = Object.Instantiate(spawnData.Prefab, newPos, Quaternion.identity); 
+                _resolver.InjectGameObject(unitGO);
+                var unit = unitGO.GetComponent<DamagableUnit>();
+                unit.SetSpawnData(spawnData);
             }
         }
 

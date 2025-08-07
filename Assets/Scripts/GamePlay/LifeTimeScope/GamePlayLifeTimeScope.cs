@@ -1,6 +1,7 @@
 using Game.GamePlayCore.Interfaces.Systems;
 using Game.GamePlayCore.Interfaces.Systems.Spawners;
 using Game.GamePlayCore.Systems;
+using Game.GamePlayCore.Systems.GamePlayState;
 using Game.GamePlayCore.Systems.Spawners;
 using Game.GamePlayCore.Systems.Units;
 using Game.GamePlayCore.Systems.Updater;
@@ -19,7 +20,6 @@ namespace Game.LifeTimeScope.GamePlayCore
             builder.Register<EnemySpawnerSystem>(Lifetime.Scoped).As<ISpawnerSystem>();
             builder.RegisterComponentInHierarchy<GamePlayStateSystem>();
             builder.RegisterComponentInHierarchy<UnitsSystem>();
-            builder.RegisterComponentInHierarchy<DamagableUnit>();
         }
     }
 }

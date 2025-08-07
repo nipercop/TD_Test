@@ -1,3 +1,4 @@
+using Game.GamePlayCore.Systems.GamePlayState;
 using UnityEngine;
 
 namespace Game.GamePlayCore.Systems.StateMachine
@@ -6,7 +7,8 @@ namespace Game.GamePlayCore.Systems.StateMachine
     {
         Idle = 0,
         SpawnEnemies = 1,
-        WaitForEndWave = 2
+        WaitForEndWave = 2,
+        EndGame = 3,
     }
     
     public class GameStateMachineCore

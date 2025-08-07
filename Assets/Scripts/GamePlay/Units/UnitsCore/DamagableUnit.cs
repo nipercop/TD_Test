@@ -1,3 +1,4 @@
+using System;
 using Game.GamePlayCore.Interfaces;
 using Game.GamePlayCore.Interfaces.Systems;
 using Game.GamePlayCore.Interfaces.Units;
@@ -12,11 +13,22 @@ namespace Game.GamePlayCore.Units
     public abstract class DamagableUnit : MonoBehaviour , IDamagable, IUpdatable
     {
         public int Health;
-        public StatsUnit Stats;
+        protected StatsUnit _stats;
+        
         [Inject] protected UnitsSystem _unitsSystem;
         [Inject] protected IGamePlayUpdater _gamePlayUpdater;
         
-        protected virtual void Start() { }
+        public StatsUnit Stats => _stats;
+
+        protected virtual void Start()
+        {
+            _gamePlayUpdater.AddUpdatable(this);
+        }
+
+        protected virtual void OnDestroy()
+        {
+            _gamePlayUpdater.RemoveUpdatable(this);
+        }
 
         public virtual void TakeDamage(int damage)
         {
@@ -34,7 +46,7 @@ namespace Game.GamePlayCore.Units
 
         public virtual void SetSpawnData(SpawnData spawnData)
         {
-            Stats = spawnData.NewStats;
+            _stats = spawnData.NewStats;
         }
         
         

@@ -1,16 +1,28 @@
+using Game.GamePlayCore.Systems.GamePlayState;
 using UnityEngine;
 
 namespace Game.GamePlayCore.Systems.StateMachine
 {
     public class GameStateSpawnEnemies : GameStateMachineCore
     {
+        public  GameStateSpawnEnemies(GamePlayStateSystem gamePlayStateSystem) : base(gamePlayStateSystem) { }
+        
         public override GameState GameState { get; } = GameState.SpawnEnemies;
-        
-        public  GameStateSpawnEnemies(GamePlayStateSystem gamePlayStateSystem) : base(gamePlayStateSystem)
+        private float _delaySpawn;
+
+        public override void Entry()
         {
-            
+            _delaySpawn = .1f;
         }
-        
-        
+
+        public override void DoUpdate(float deltaTime)
+        {
+            _delaySpawn -= deltaTime;
+            if (_delaySpawn <= 0f)
+            {
+                _delaySpawn = .1f;
+                _gamePlayStateSystem.SpawnEnemies();
+            }
+        }
     }
 }

@@ -24,7 +24,7 @@ namespace  Game.GamePlayCore.Systems.Updater
             int count = _attackables.Count;
             for (int i = 0; i < count; i++)
             {
-                _attackables[i].UpdateAttack(deltaTime);
+                //_attackables[i].UpdateAttack(deltaTime);
             }
         }
     }
