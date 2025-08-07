@@ -5,8 +5,6 @@ namespace Game.GamePlayCore.Systems.StateMachine
 {
     public class GameStateIdle : GameStateMachineCore
     {
-        public GameStateIdle(GamePlayStateSystem gamePlayStateSystem) : base(gamePlayStateSystem) { }
-        
         public override GameState GameState { get; } = GameState.Idle;
         private float _timer;
 

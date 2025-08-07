@@ -7,10 +7,7 @@ namespace Game.GamePlayCore.Systems.StateMachine
 {
     public class GameStateWaitForEndWave : GameStateMachineCore
     {
-
         [Inject] private readonly UnitsSystem _unitsSystem;
-        public  GameStateWaitForEndWave(GamePlayStateSystem gamePlayStateSystem) : base(gamePlayStateSystem) { }
-        
         public override GameState GameState { get; } = GameState.WaitForEndWave;
 
         public override void DoUpdate(float deltaTime)

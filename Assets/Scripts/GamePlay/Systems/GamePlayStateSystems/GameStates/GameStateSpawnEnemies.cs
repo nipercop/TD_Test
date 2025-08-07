@@ -5,8 +5,6 @@ namespace Game.GamePlayCore.Systems.StateMachine
 {
     public class GameStateSpawnEnemies : GameStateMachineCore
     {
-        public  GameStateSpawnEnemies(GamePlayStateSystem gamePlayStateSystem) : base(gamePlayStateSystem) { }
-        
         public override GameState GameState { get; } = GameState.SpawnEnemies;
         private float _delaySpawn;
 

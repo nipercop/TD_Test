@@ -30,10 +30,10 @@ namespace Game.GamePlayCore.Systems.GamePlayState
         {
             _states = new GameStateMachineCore[]
             {
-                new GameStateIdle(this),
-                new GameStateSpawnEnemies(this),
-                CreateWithInject(new GameStateWaitForEndWave(this)),
-                new GameStateEndGame(this)
+                CreateWithInject(new GameStateIdle()),
+                CreateWithInject(new GameStateSpawnEnemies()),
+                CreateWithInject(new GameStateWaitForEndWave()),
+                CreateWithInject(new GameStateEndGame())
             };
             _currentGameState = _states[0];
             
@@ -104,6 +104,11 @@ namespace Game.GamePlayCore.Systems.GamePlayState
             {
                 ChangeState(GameState.WaitForEndWave);
             }
+        }
+
+        public void EndGame()
+        {
+            Debug.Log("============ EndGame ============");
         }
     }
 }

@@ -1,5 +1,6 @@
 using Game.GamePlayCore.Systems.GamePlayState;
 using UnityEngine;
+using VContainer;
 
 namespace Game.GamePlayCore.Systems.StateMachine
 {
@@ -13,19 +14,11 @@ namespace Game.GamePlayCore.Systems.StateMachine
     
     public class GameStateMachineCore
     {
-        protected readonly GamePlayStateSystem _gamePlayStateSystem;
+        [Inject] protected readonly GamePlayStateSystem _gamePlayStateSystem;
         public virtual GameState GameState { get; }
-        protected GameStateMachineCore(GamePlayStateSystem gamePlayStateSystem)
-        {
-            _gamePlayStateSystem = gamePlayStateSystem;
-        }
-        
         public virtual void Entry() { }
-
         public virtual void DoUpdate(float deltaTime) { }
-        
         public virtual void Exit() { }
-
         
     }
 }
