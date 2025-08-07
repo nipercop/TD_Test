@@ -57,8 +57,10 @@ namespace Game.GamePlayCore.Units.Logic.Attack
 
             if (_timerAttack <= 0)
             {
-                CreateProjectile(_projectile, transform.position, _target);
                 _timerAttack = 1f;
+                var projectile = CreateProjectile(_projectile, transform.position);
+                projectile.SetDamage(attackableUnit.Stats.Damage);
+                projectile.SetTarget(_target);
             }
         }
 
@@ -68,10 +70,10 @@ namespace Game.GamePlayCore.Units.Logic.Attack
         }
 
         // TODO nipercop: в будущем можно сделать через ProjectileSpawner, но идею в принципе поняли
-        private void CreateProjectile(GameObject prefab, Vector3 position, DamagableUnit target)
+        private SimpleProjectile CreateProjectile(GameObject prefab, Vector3 position)
         {
             var go = Instantiate(prefab, position, Quaternion.identity);
-            go.GetComponent<SimpleProjectile>().SetTarget(target);
+            return go.GetComponent<SimpleProjectile>();
         }
     }
 }

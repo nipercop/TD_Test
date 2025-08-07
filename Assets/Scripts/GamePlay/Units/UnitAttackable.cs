@@ -1,16 +1,11 @@
-using System;
-using Game.GamePlayCore.Interfaces;
 using Game.GamePlayCore.Interfaces.Units;
-using Game.GamePlayCore.Interfaces.Units.Logic.Attack;
-using Game.GamePlayCore.Stats;
-using Game.GamePlayCore.Systems.Spawners.Data;
 using Game.GamePlayCore.Systems.Units;
 using Game.GamePlayCore.Units.Logic.Attack;
 using UnityEngine;
 
 namespace Game.GamePlayCore.Units
 {
-    public class UnitStationary : DamagableUnit , IAttackable
+    public class UnitAttackable : DamagableUnit , IAttackable
     {
         [SerializeField] private SimpleAttack _attackLogic;
         

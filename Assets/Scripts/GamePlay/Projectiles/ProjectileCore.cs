@@ -19,5 +19,10 @@ namespace Game.GamePlayCore.Projectiles
         {
             _target = target;
         }
+
+        public virtual void SetDamage(int damage)
+        {
+            _damage = damage;
+        }
     }
 }

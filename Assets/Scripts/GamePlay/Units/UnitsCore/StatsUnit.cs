@@ -1,9 +1,10 @@
 namespace Game.GamePlayCore.Stats
 {
     [System.Serializable]
-    public class StatsUnit
+    public struct StatsUnit
     {
         public int Health;
+        public int Damage;
         public float MoveSpeed;
         public float AttackSpeed;
     }

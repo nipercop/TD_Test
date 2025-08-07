@@ -12,7 +12,6 @@ namespace Game.GamePlayCore.Units
 {
     public abstract class DamagableUnit : MonoBehaviour , IDamagable, IUpdatable
     {
-        public int Health;
         [SerializeField] protected StatsUnit _stats;
         
         [Inject] protected UnitsSystem _unitsSystem;
@@ -32,8 +31,8 @@ namespace Game.GamePlayCore.Units
 
         public virtual void TakeDamage(int damage)
         {
-            Health -= damage;
-            if (Health < 0)
+            _stats.Health -= damage;
+            if (_stats.Health <= 0)
             {
                 Die();
             }
