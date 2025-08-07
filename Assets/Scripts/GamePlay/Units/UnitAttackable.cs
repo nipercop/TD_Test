@@ -7,7 +7,7 @@ namespace Game.GamePlayCore.Units
 {
     public class UnitAttackable : DamagableUnit , IAttackable
     {
-        [SerializeField] private SimpleAttack _attackLogic;
+        [SerializeField] private SimpleAttackProjectile attackProjectileLogic;
         
         public UnitsSystem  UnitsSystem => _unitsSystem;
         public Transform UnitTransform => transform;
@@ -16,7 +16,7 @@ namespace Game.GamePlayCore.Units
         public override void DoUpdate(float deltaTime)
         {
             base.DoUpdate(deltaTime);
-            _attackLogic.DoUpdate(this, deltaTime);
+            attackProjectileLogic.DoUpdate(this, deltaTime);
         }
 
     }

@@ -7,7 +7,7 @@ using UnityEngine;
 
 namespace Game.GamePlayCore.Units.Logic.Attack
 {
-    public class SimpleAttack: MonoBehaviour //,  IAttackLogic
+    public class SimpleAttackProjectile: MonoBehaviour,  IAttackLogic
     {
         [SerializeField] private float _timerAttack = 0;
         [SerializeField] private DamagableUnit _target;

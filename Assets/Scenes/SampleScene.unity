@@ -804,6 +804,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7516336827599538325, guid: 4e7bf225f25c5694498bcadc3b0311f1, type: 3}
   m_PrefabInstance: {fileID: 1299481114801250979}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1204348307 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4085991091533269979, guid: 4e7bf225f25c5694498bcadc3b0311f1, type: 3}
+  m_PrefabInstance: {fileID: 1299481114801250979}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a70779e13dba6cd418456b75d3fc4c6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1275127963
 GameObject:
   m_ObjectHideFlags: 0
@@ -868,37 +879,42 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _spawnPoint: {fileID: 281782539}
-  _destinationPoint: {fileID: 1204348306}
+  _destinationPoint: {fileID: 1204348307}
   _currentWave: 0
   _waveDatas:
   - PrefabEnemy: {fileID: 901565733775393165, guid: 9316c7c28e3a5f74eb820dad72115ade, type: 3}
     Count: 5
     Stats:
       Health: 15
+      Damage: 5
       MoveSpeed: 3
       AttackSpeed: 0
   - PrefabEnemy: {fileID: 901565733775393165, guid: 9316c7c28e3a5f74eb820dad72115ade, type: 3}
     Count: 15
     Stats:
       Health: 20
+      Damage: 5
       MoveSpeed: 3
       AttackSpeed: 0
   - PrefabEnemy: {fileID: 901565733775393165, guid: 9316c7c28e3a5f74eb820dad72115ade, type: 3}
     Count: 20
     Stats:
       Health: 25
+      Damage: 5
       MoveSpeed: 2
       AttackSpeed: 0
   - PrefabEnemy: {fileID: 901565733775393165, guid: 9316c7c28e3a5f74eb820dad72115ade, type: 3}
     Count: 25
     Stats:
       Health: 40
+      Damage: 5
       MoveSpeed: 2
       AttackSpeed: 0
   - PrefabEnemy: {fileID: 901565733775393165, guid: 9316c7c28e3a5f74eb820dad72115ade, type: 3}
     Count: 50
     Stats:
       Health: 50
+      Damage: 5
       MoveSpeed: 2
       AttackSpeed: 0
 --- !u!4 &1457079454

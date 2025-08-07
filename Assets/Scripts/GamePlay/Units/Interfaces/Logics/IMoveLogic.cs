@@ -7,5 +7,6 @@ namespace Game.GamePlayCore.Interfaces.Units.Logic.Move
     {
         void DoUpdate(UnitMoveable unit,float deltaTime);
         void SetDestination(Vector3 destination);
+        bool IsDestinationReached();
     }
 }

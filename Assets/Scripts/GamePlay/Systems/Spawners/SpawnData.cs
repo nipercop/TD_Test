@@ -1,4 +1,5 @@
 using Game.GamePlayCore.Stats;
+using Game.GamePlayCore.Units;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -9,7 +10,7 @@ namespace Game.GamePlayCore.Systems.Spawners.Data
         public int CountSpawn;
         public GameObject Prefab;
         public Vector3 Position;
-        public Vector3 Destination;
+        public DamagableUnit Destination;
         public StatsUnit NewStats;
     }
 }

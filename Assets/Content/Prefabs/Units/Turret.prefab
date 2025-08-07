@@ -105,7 +105,7 @@ MonoBehaviour:
     Damage: 25
     MoveSpeed: 0
     AttackSpeed: 1
-  _attackLogic: {fileID: -147625777843741823}
+  attackProjectileLogic: {fileID: -147625777843741823}
 --- !u!114 &-147625777843741823
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -5,6 +5,7 @@ using Game.GamePlayCore.Interfaces.Systems.Spawners;
 using Game.GamePlayCore.Stats;
 using Game.GamePlayCore.Systems.Spawners.Data;
 using Game.GamePlayCore.Systems.StateMachine;
+using Game.GamePlayCore.Units;
 using UnityEngine;
 using VContainer;
 
@@ -22,7 +23,7 @@ namespace Game.GamePlayCore.Systems.GamePlayState
         private SpawnData _spawnData = new ();
         
         [SerializeField] private Transform _spawnPoint;
-        [SerializeField] private Transform _destinationPoint;
+        [SerializeField] private DamagableUnit _destinationPoint;
         [SerializeField] private int _currentWave = 0;
         [SerializeField] private WaveData[] _waveDatas;
         
@@ -54,7 +55,7 @@ namespace Game.GamePlayCore.Systems.GamePlayState
             _spawnData.Prefab = _waveDatas[_currentWave].PrefabEnemy;
             _spawnData.NewStats  = _waveDatas[_currentWave].Stats;
             _spawnData.Position = _spawnPoint.position;
-            _spawnData.Destination = _destinationPoint.position;
+            _spawnData.Destination = _destinationPoint;
         }
 
         private void OnDestroy()
