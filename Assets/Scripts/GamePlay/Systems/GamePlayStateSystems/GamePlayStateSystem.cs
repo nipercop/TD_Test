@@ -16,7 +16,6 @@ namespace Game.GamePlayCore.Systems.GamePlayState
         [Inject] private IGamePlayUpdater _updater;
         [Inject] private ISpawnerSystem _enemySpawnerSystem;
         [Inject] private IObjectResolver _resolver;
-        //[SerializeField] private float _timer = 0;
 
         private GameStateMachineCore[] _states ;
         private GameStateMachineCore _currentGameState;
