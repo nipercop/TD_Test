@@ -2,7 +2,10 @@
     "name": "Project.GamePlay",
     "rootNamespace": "Game.GamePlayCore",
     "references": [
-        "GUID:b0214a6008ed146ff8f122a6a9c2f6cc"
+        "GUID:b0214a6008ed146ff8f122a6a9c2f6cc",
+        "GUID:7a95adfe6d3c5e54dba86578d796e5a2",
+        "GUID:f51ebe6a0ceec4240a699833d6309b23",
+        "GUID:593a5b492d29ac6448b1ebf7f035ef33"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

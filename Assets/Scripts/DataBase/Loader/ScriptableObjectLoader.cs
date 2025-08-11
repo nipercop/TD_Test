@@ -1,29 +1,21 @@
 using System;
 using System.Threading.Tasks;
 using CardRogue.DataBase.Interfaces.Loader;
+using Cysharp.Threading.Tasks;
 using Game.DataBase.Interfaces;
 using UnityEngine.AddressableAssets;
+using UnityEngine.ResourceManagement.AsyncOperations;
 
 namespace Game.DataBase.Loader
 {
     public class ScriptableObjectLoader : IDataLoader
     {
-        public async Task<IDataBase> LoadAsync(string address, Action<IDataBase> onComplete, Action<Exception> onError = null)
+        public async UniTask LoadAsync<T>(string address, Action<T> onComplete, Action<Exception> onError = null)
         {
             try
             {
-                var asyncTask = Addressables.LoadAssetAsync<IDataBase>(address);
-                await asyncTask.Task;
-                
-                if (asyncTask.Status == UnityEngine.ResourceManagement.AsyncOperations.AsyncOperationStatus.Succeeded)
-                {
-                    onComplete?.Invoke(asyncTask.Result);
-                    return asyncTask.Result;
-                }
-                else
-                {
-                    throw new Exception($"Failed to load ScriptableObject at address: {address}");
-                }
+                var result = await Addressables.LoadAssetAsync<T>(address).ToUniTask();
+                onComplete.Invoke(result);
             }
             catch (Exception ex)
             {
