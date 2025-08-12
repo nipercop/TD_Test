@@ -2,9 +2,9 @@
     "name": "Project.UI.Abilities",
     "rootNamespace": "Game.UI.Abilities",
     "references": [
-        "GUID:7a95adfe6d3c5e54dba86578d796e5a2",
+        "GUID:c19a156bde394844497b12505e08ef32",
         "GUID:b0214a6008ed146ff8f122a6a9c2f6cc",
-        "GUID:f51ebe6a0ceec4240a699833d6309b23"
+        "GUID:6055be8ebefd69e48b49212b09b47b2f"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],

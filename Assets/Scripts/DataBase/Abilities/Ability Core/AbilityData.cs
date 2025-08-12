@@ -6,6 +6,7 @@ namespace Game.DataBase.Abilities
     public class AbilityData : ScriptableObject
     {
         public int Id;
+        public string Name;
         
     }
 }

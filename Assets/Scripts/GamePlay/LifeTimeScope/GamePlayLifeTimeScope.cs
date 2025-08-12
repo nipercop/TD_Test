@@ -7,7 +7,9 @@ using Game.GamePlayCore.Systems.GamePlayState;
 using Game.GamePlayCore.Systems.Spawners;
 using Game.GamePlayCore.Systems.Units;
 using Game.GamePlayCore.Systems.Updater;
-using UnityEngine;
+using Game.UI.Abilities.Model;
+using Game.UI.Abilities.Presenter;
+using Game.UI.Abilities.View;
 using VContainer;
 using VContainer.Unity;
 
@@ -23,6 +25,12 @@ namespace Game.LifeTimeScope.GamePlayCore
             builder.Register<EnemySpawnerSystem>(Lifetime.Scoped).As<ISpawnerSystem>();
             builder.RegisterComponentInHierarchy<GamePlayStateSystem>();
             builder.RegisterComponentInHierarchy<UnitsSystem>();
+            
+            builder.Register<AbilityPanelModel>(Lifetime.Transient);
+            builder.Register<AbilityPanelPresenter>(Lifetime.Transient);
+            builder.RegisterComponentInHierarchy<AbilityPanelView>();
+            
         }
+        
     }
 }

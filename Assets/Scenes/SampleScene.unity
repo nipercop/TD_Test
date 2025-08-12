@@ -176,6 +176,7 @@ GameObject:
   - component: {fileID: 260380755}
   - component: {fileID: 260380754}
   - component: {fileID: 260380756}
+  - component: {fileID: 260380757}
   m_Layer: 5
   m_Name: Panel Abilities
   m_TagString: Untagged
@@ -252,6 +253,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9886649ac3564948a4910885930d5e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  _abilityButtonPrefab: {fileID: 1873751750437902171, guid: 76ed767eba978484d91692b28e0525ec, type: 3}
+--- !u!114 &260380757
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 260380752}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 30649d3a9faa99c48a7b1166b86bf2a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Padding:
+    m_Left: 10
+    m_Right: 10
+    m_Top: 0
+    m_Bottom: 0
+  m_ChildAlignment: 4
+  m_Spacing: 0
+  m_ChildForceExpandWidth: 1
+  m_ChildForceExpandHeight: 1
+  m_ChildControlWidth: 0
+  m_ChildControlHeight: 0
+  m_ChildScaleWidth: 0
+  m_ChildScaleHeight: 0
+  m_ReverseArrangement: 0
 --- !u!1 &281782538
 GameObject:
   m_ObjectHideFlags: 0
@@ -1292,7 +1320,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_VertexColorAlwaysGammaSpace: 0
-  m_AdditionalShaderChannelsFlag: 0
+  m_AdditionalShaderChannelsFlag: 25
   m_UpdateRectTransformForStandalone: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
@@ -1393,7 +1421,7 @@ PrefabInstance:
     - target: {fileID: 1713640561105350658, guid: 673e6f42ebf428c42a25094674b685be, type: 3}
       propertyPath: 'autoInjectGameObjects.Array.data[1]'
       value: 
-      objectReference: {fileID: 1457079452}
+      objectReference: {fileID: 260380752}
     - target: {fileID: 5239269601300705181, guid: 673e6f42ebf428c42a25094674b685be, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6.2619205
