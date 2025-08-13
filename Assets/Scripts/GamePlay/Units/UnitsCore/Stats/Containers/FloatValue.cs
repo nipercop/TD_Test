@@ -1,6 +1,6 @@
 using System.Collections.Generic;
+using Game.Abstractions.Ability;
 using Game.DataBase.Abilities.Logic;
-using Game.DataBase.Units;
 
 namespace Game.GamePlayCore.Stats
 {
@@ -17,11 +17,12 @@ namespace Game.GamePlayCore.Stats
     }
     
     [System.Serializable]
-    public struct FloatValue
+    public struct FloatValue : IFloatValue
     {
         public float Value;
         private float _valueBase;
         private Dictionary<int,ValueChanger> _changers;
+        public float uValue => Value;
 
         public FloatValue(float value)
         {
@@ -30,9 +31,10 @@ namespace Game.GamePlayCore.Stats
             _changers = new Dictionary<int, ValueChanger>();
         }
 
-        public void AddChangeStat(int id, AbilityChangeStats stat)
+
+        public void AddChangeStat(int id, IAbilityChangeStats stat)
         {
-            _changers.TryAdd(id, new ValueChanger(stat.statsChangeType, stat.Value));
+            _changers.TryAdd(id, new ValueChanger(stat.StatsChangeType, stat.Value));
             Calculate();
         }
 

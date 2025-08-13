@@ -23,7 +23,7 @@ namespace Game.GamePlayCore.Units.Logic.Move
             if (distanceSqr > 0.1f)
             {
                 trans.LookAt(_destination);
-                trans.Translate(trans.forward * (deltaTime * unit.Stats.MoveSpeed.Value), Space.World);
+                trans.Translate(trans.forward * (deltaTime * unit.Stats.uMoveSpeed.uValue), Space.World);
             }
             else
             {

@@ -40,14 +40,14 @@ namespace Game.GamePlayCore.Abilities
         {
             _unit = target;
             _isActive = true;
-            _unit.IncreaseStats(Id, statsToChange);
+            //_unit.IncreaseStats(Id, statsToChange);
         }
 
         public virtual void Deactivate()
         {
             if (_unit != null)
             {
-                _unit.DecreaseStats(Id, statsToChange);
+                //_unit.DecreaseStats(Id, statsToChange);
             }
             _unit = null;
             _isActive = false;

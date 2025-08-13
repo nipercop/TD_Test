@@ -18,7 +18,7 @@ namespace Game.GamePlayCore.Units.Logic.Attack
         {
             if (_target != null)
             {
-                _timerAttack -= deltaTime * attackableUnit.Stats.AttackSpeed.Value;
+                _timerAttack -= deltaTime * attackableUnit.Stats.uAttackSpeed.uValue;
                 TryAttackTarget( attackableUnit);
             }
             else
@@ -62,7 +62,7 @@ namespace Game.GamePlayCore.Units.Logic.Attack
             {
                 _timerAttack = 1f;
                 var projectile = CreateProjectile(_projectile, transform.position);
-                projectile.SetDamage(attackableUnit.Stats.Damage);
+                projectile.SetDamage(attackableUnit.Stats.uDamage);
                 projectile.SetTarget(_target);
             }
         }

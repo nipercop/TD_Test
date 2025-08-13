@@ -1,24 +1,25 @@
+using Game.Abstractions.Ability;
 using Game.DataBase.Abilities.Logic;
 using Game.DataBase.Units;
 using Game.GamePlayCore.Interfaces;
 using Game.GamePlayCore.Interfaces.Systems;
-using Game.GamePlayCore.Interfaces.Units;
 using Game.GamePlayCore.Stats;
 using Game.GamePlayCore.Systems.Spawners.Data;
 using Game.GamePlayCore.Systems.Units;
 using UnityEngine;
 using VContainer;
+using IDamagable = Game.GamePlayCore.Interfaces.Units.IDamagable;
 
 namespace Game.GamePlayCore.Units
 {
-    public abstract class DamagableUnit : MonoBehaviour , IDamagable, IUpdatable
+    public abstract class DamagableUnit : MonoBehaviour , IDamagable, IUpdatable, IAbilityTarget
     {
         [SerializeField] protected StatsUnit _stats;
         [SerializeField] protected int _faction;
         [Inject] protected UnitsSystem _unitsSystem;
         [Inject] protected IGamePlayUpdater _gamePlayUpdater;
         
-        public StatsUnit Stats => _stats;
+        public IStatsUnit Stats => _stats;
         public int Faction => _faction;
 
         protected virtual void Start()
@@ -48,17 +49,17 @@ namespace Game.GamePlayCore.Units
             Destroy(gameObject);
         }
 
-        public void IncreaseStats(int id, params AbilityChangeStats[] statsToChange)
+        public void IncreaseStats(int id, params IAbilityChangeStats[] statsToChange)
         {
             foreach (var stat in statsToChange)
             {
                 var newStats = _stats;
                 switch (stat.statType)
                 { 
-                    case StatsType.MoveSpeed:
+                    case Game.Abstractions.Ability.StatsType.MoveSpeed:
                         newStats.MoveSpeed.AddChangeStat(id, stat);
                         break;
-                    case StatsType.AttackSpeed:
+                    case Game.Abstractions.Ability.StatsType.AttackSpeed:
                         newStats.AttackSpeed.AddChangeStat(id, stat);
                         break;
                 }
@@ -66,17 +67,17 @@ namespace Game.GamePlayCore.Units
             }
         }
         
-        public void DecreaseStats(int id, params AbilityChangeStats[] statsToChange)
+        public void DecreaseStats(int id, params IAbilityChangeStats[] statsToChange)
         {
             foreach (var stat in statsToChange)
             {
                 var newStats = _stats;
                 switch (stat.statType)
                 { 
-                    case StatsType.MoveSpeed:
+                    case Game.Abstractions.Ability.StatsType.MoveSpeed:
                         newStats.MoveSpeed.RemoveChangeStat(id);
                         break;
-                    case StatsType.AttackSpeed:
+                    case Game.Abstractions.Ability.StatsType.AttackSpeed:
                         newStats.AttackSpeed.RemoveChangeStat(id);
                         break;
                 }
