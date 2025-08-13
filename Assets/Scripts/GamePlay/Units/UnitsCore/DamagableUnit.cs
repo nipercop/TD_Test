@@ -19,7 +19,12 @@ namespace Game.GamePlayCore.Units
         [Inject] protected UnitsSystem _unitsSystem;
         [Inject] protected IGamePlayUpdater _gamePlayUpdater;
         
-        public IStatsUnit Stats => _stats;
+        public IStatsUnit Stats
+        {
+            get => _stats;
+            set => _stats = (StatsUnit)value;
+        }
+
         public int Faction => _faction;
 
         protected virtual void Start()
@@ -47,42 +52,6 @@ namespace Game.GamePlayCore.Units
         protected virtual void Die()
         {
             Destroy(gameObject);
-        }
-
-        public void IncreaseStats(int id, params IAbilityChangeStats[] statsToChange)
-        {
-            foreach (var stat in statsToChange)
-            {
-                var newStats = _stats;
-                switch (stat.statType)
-                { 
-                    case Game.Abstractions.Ability.StatsType.MoveSpeed:
-                        newStats.MoveSpeed.AddChangeStat(id, stat);
-                        break;
-                    case Game.Abstractions.Ability.StatsType.AttackSpeed:
-                        newStats.AttackSpeed.AddChangeStat(id, stat);
-                        break;
-                }
-                _stats = newStats;
-            }
-        }
-        
-        public void DecreaseStats(int id, params IAbilityChangeStats[] statsToChange)
-        {
-            foreach (var stat in statsToChange)
-            {
-                var newStats = _stats;
-                switch (stat.statType)
-                { 
-                    case Game.Abstractions.Ability.StatsType.MoveSpeed:
-                        newStats.MoveSpeed.RemoveChangeStat(id);
-                        break;
-                    case Game.Abstractions.Ability.StatsType.AttackSpeed:
-                        newStats.AttackSpeed.RemoveChangeStat(id);
-                        break;
-                }
-                _stats = newStats;
-            }
         }
 
         public virtual void SetSpawnData(SpawnData spawnData)

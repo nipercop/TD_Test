@@ -1,8 +1,6 @@
-using System.Collections.Generic;
+
 using Game.Abstractions.Ability;
-using Game.DataBase.Abilities.Logic;
-using Game.DataBase.Units;
-using UnityEngine;
+using StatsType = Game.Abstractions.Ability.StatsType;
 
 namespace Game.GamePlayCore.Stats
 {
@@ -25,8 +23,17 @@ namespace Game.GamePlayCore.Stats
             set { Damage = value; }
         }
         
-        IFloatValue IStatsUnit.uMoveSpeed => MoveSpeed;
-        IFloatValue IStatsUnit.uAttackSpeed => AttackSpeed;
+        IFloatValue IStatsUnit.uMoveSpeed
+        {
+            get => MoveSpeed;
+            set => MoveSpeed = (FloatValue) value;
+        }
+
+        IFloatValue IStatsUnit.uAttackSpeed
+        {
+            get => AttackSpeed;
+            set => AttackSpeed = (FloatValue)  value;
+        }
 
         public StatsUnit(StatsUnit other)
         {
@@ -44,6 +51,31 @@ namespace Game.GamePlayCore.Stats
             AttackSpeed = new FloatValue(attackSpeed);
         }
 
+        public void IncreaseValue(int id, IAbilityChangeStats stats)
+        {
+            switch (stats.StatType)
+            {
+                case StatsType.MoveSpeed:
+                    MoveSpeed.AddChangeStat(id, stats.StatsChangeType, stats.Value);
+                    break;
+                case StatsType.AttackSpeed :
+                    AttackSpeed.AddChangeStat(id, stats.StatsChangeType, stats.Value);
+                    break;
+            }
+        }
+
+        public void DecreaseValue(int id, IAbilityChangeStats stats)
+        {
+            switch (stats.StatType)
+            {
+                case StatsType.MoveSpeed:
+                    MoveSpeed.RemoveChangeStat(id);
+                    break;
+                case StatsType.AttackSpeed :
+                    AttackSpeed.RemoveChangeStat(id);
+                    break;
+            }
+        }
        
     }
 }

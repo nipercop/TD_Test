@@ -10,6 +10,7 @@ namespace Game.DataBase.Abilities
         public string Name;
         public float LifeTime;
 
-        public AbilityChangeStats[] StatsToChange;
+        public AbilityLogicCore[] Logics;
+
     }
 }

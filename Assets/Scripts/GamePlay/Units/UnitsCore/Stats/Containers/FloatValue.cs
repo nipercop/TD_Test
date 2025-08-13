@@ -1,6 +1,7 @@
 using System.Collections.Generic;
 using Game.Abstractions.Ability;
 using Game.DataBase.Abilities.Logic;
+using UnityEngine;
 
 namespace Game.GamePlayCore.Stats
 {
@@ -32,9 +33,9 @@ namespace Game.GamePlayCore.Stats
         }
 
 
-        public void AddChangeStat(int id, IAbilityChangeStats stat)
+        public void AddChangeStat(int id, StatsChangeType changeType, float value)
         {
-            _changers.TryAdd(id, new ValueChanger(stat.StatsChangeType, stat.Value));
+            _changers.Add(id, new ValueChanger(changeType, value));
             Calculate();
         }
 
@@ -61,6 +62,8 @@ namespace Game.GamePlayCore.Stats
                 }
             }
             Value = (_valueBase + sumAdd ) * sumMultiplier;
+            Debug.Log("Calculate Value "+ Value);
+            Debug.Log("Calculate uValue "+ uValue);
         }
     }
 }

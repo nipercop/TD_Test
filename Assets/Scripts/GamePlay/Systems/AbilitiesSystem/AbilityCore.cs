@@ -12,7 +12,7 @@ namespace Game.GamePlayCore.Abilities
         protected DamagableUnit _unit;
         protected float lifeTime;
         protected bool _isActive;
-        protected AbilityChangeStats [] statsToChange;
+        protected AbilityLogicCore[] logics;
         
         public float LifeTime => lifeTime;
         public bool IsActive => _isActive;
@@ -23,7 +23,7 @@ namespace Game.GamePlayCore.Abilities
             Id = data.Id;
             Name = data.Name;
             lifeTime = data.LifeTime;
-            statsToChange = data.StatsToChange;
+            logics = data.Logics;
         }
 
         public AbilityCore(AbilityCore original, DamagableUnit target)
@@ -32,14 +32,18 @@ namespace Game.GamePlayCore.Abilities
             Name = original.Name;
             lifeTime = original.lifeTime;
             _unit = target;
-            statsToChange = original.statsToChange;
             _isActive = true;
+            logics = original.logics;
         }
 
         public virtual void Activate(DamagableUnit  target)
         {
             _unit = target;
             _isActive = true;
+            foreach (var logic in logics)
+            {
+                logic.Activate(_unit);
+            }
             //_unit.IncreaseStats(Id, statsToChange);
         }
 
@@ -47,7 +51,10 @@ namespace Game.GamePlayCore.Abilities
         {
             if (_unit != null)
             {
-                //_unit.DecreaseStats(Id, statsToChange);
+                foreach (var logic in logics)
+                {
+                    logic.Deactivate(_unit);
+                }
             }
             _unit = null;
             _isActive = false;
