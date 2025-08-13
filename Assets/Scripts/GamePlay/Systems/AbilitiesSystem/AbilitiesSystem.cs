@@ -20,6 +20,7 @@ namespace Game.GamePlayCore.Abilities
         public AbilityCore[] Datas => _datas;
         public event Action AbilitiesLoaded;
         private List<AbilityCore> _abilities = new List<AbilityCore>();
+        private List<AbilityCore> _toRemove = new List<AbilityCore>();
 
         public async Awaitable StartAsync(CancellationToken cancellation = new CancellationToken())
         {
@@ -54,6 +55,7 @@ namespace Game.GamePlayCore.Abilities
                 if (abilityCore.Id == id)
                 {
                     var activatedAbility = new AbilityCore(abilityCore, target);
+                    activatedAbility.Activate(target);
                     //target.SetAbility(activatedAbility);
                     _abilities.Add(activatedAbility);
                 }
@@ -62,7 +64,28 @@ namespace Game.GamePlayCore.Abilities
 
         public void Tick()
         {
-             
+            int count = _abilities.Count;
+            float deltaTime = Time.deltaTime;
+            for (int i = 0; i < count; i++)
+            {
+                var currentAbility = _abilities[i];
+                currentAbility.DoUpdate(deltaTime);
+                if (currentAbility.LifeTime < 0 || !currentAbility.IsActive)
+                {
+                    currentAbility.Deactivate();
+                    _toRemove.Add(currentAbility);
+                }
+            }
+
+            if (_toRemove.Count > 0)
+            {
+                foreach (var abilityCore in _toRemove)
+                {
+                    abilityCore.Clear();
+                    _abilities.Remove(abilityCore);
+                }
+                _toRemove.Clear();
+            }
         }
     }
 }

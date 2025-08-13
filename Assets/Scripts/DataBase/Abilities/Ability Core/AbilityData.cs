@@ -7,6 +7,7 @@ namespace Game.DataBase.Abilities
     {
         public int Id;
         public string Name;
-        
+        public float LifeTime;
+
     }
 }

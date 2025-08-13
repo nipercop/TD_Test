@@ -18,7 +18,7 @@ namespace Game.GamePlayCore.Units
         [Inject] protected UnitsSystem _unitsSystem;
         [Inject] protected IGamePlayUpdater _gamePlayUpdater;
         
-        private List<AbilityCore> _abilities = new List<AbilityCore>();
+        //private List<AbilityCore> _abilities = new List<AbilityCore>();
         
         public StatsUnit Stats => _stats;
         public int Faction => _faction;
@@ -46,6 +46,11 @@ namespace Game.GamePlayCore.Units
 
         protected virtual void Die()
         {
+            // foreach (var ability in _abilities)
+            // {
+            //     ability.Deactivate();
+            // }
+            // _abilities.Clear();
             Destroy(gameObject);
         }
 
@@ -54,12 +59,10 @@ namespace Game.GamePlayCore.Units
             _stats = spawnData.NewStats;
         }
 
-        public virtual void SetAbility(AbilityCore ability)
-        {
-            _abilities.Add(ability);
-            
-            Debug.Log("SetAbility id = "+ability.Id, gameObject);
-        }
+        // public virtual void SetAbility(AbilityCore ability)
+        // {
+        //     _abilities.Add(ability);
+        // }
         
         
         public virtual void DoUpdate(float deltaTime)
