@@ -56,7 +56,6 @@ namespace Game.GamePlayCore.Abilities
                 {
                     var activatedAbility = new AbilityCore(abilityCore, target);
                     activatedAbility.Activate(target);
-                    //target.SetAbility(activatedAbility);
                     _abilities.Add(activatedAbility);
                 }
             }

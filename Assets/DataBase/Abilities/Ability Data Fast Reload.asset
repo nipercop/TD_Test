@@ -14,4 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 0
   Name: Fast Reload
-  LifeTime: 10
+  LifeTime: 5
+  StatsToChange:
+  - statType: 3
+    statsChangeType: 1
+    Value: 4

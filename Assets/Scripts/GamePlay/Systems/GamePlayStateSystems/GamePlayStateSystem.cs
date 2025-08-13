@@ -96,7 +96,7 @@ namespace Game.GamePlayCore.Systems.GamePlayState
             SetSpawnData();
             _enemySpawnerSystem.Spawn(_spawnData);
             _currentWave++;
-            if (_currentWave >= _waveDatas.Length)
+            if (_currentWave > _waveDatas.Length)
             {
                 ChangeState(GameState.EndGame);
             }

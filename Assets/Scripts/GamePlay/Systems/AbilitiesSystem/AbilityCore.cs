@@ -1,4 +1,5 @@
 using Game.DataBase.Abilities;
+using Game.DataBase.Abilities.Logic;
 using Game.GamePlayCore.Units;
 using UnityEngine;
 
@@ -9,10 +10,11 @@ namespace Game.GamePlayCore.Abilities
         public int Id { get; }
         public string Name { get; private set; }
         protected DamagableUnit _unit;
-        protected float _lifeTime;
+        protected float lifeTime;
         protected bool _isActive;
+        protected AbilityChangeStats [] statsToChange;
         
-        public float LifeTime => _lifeTime;
+        public float LifeTime => lifeTime;
         public bool IsActive => _isActive;
         
 
@@ -20,15 +22,17 @@ namespace Game.GamePlayCore.Abilities
         {
             Id = data.Id;
             Name = data.Name;
-            _lifeTime = data.LifeTime;
+            lifeTime = data.LifeTime;
+            statsToChange = data.StatsToChange;
         }
 
         public AbilityCore(AbilityCore original, DamagableUnit target)
         {
             Id = original.Id;
             Name = original.Name;
-            _lifeTime = original._lifeTime;
+            lifeTime = original.lifeTime;
             _unit = target;
+            statsToChange = original.statsToChange;
             _isActive = true;
         }
 
@@ -36,20 +40,24 @@ namespace Game.GamePlayCore.Abilities
         {
             _unit = target;
             _isActive = true;
-            Debug.Log("Activate id =" + Id, target);
+            _unit.IncreaseStats(Id, statsToChange);
         }
 
         public virtual void Deactivate()
         {
+            if (_unit != null)
+            {
+                _unit.DecreaseStats(Id, statsToChange);
+            }
             _unit = null;
             _isActive = false;
-            Debug.Log("Deactivate id = " + Id);
         }
+        
 
         public virtual void DoUpdate(float deltaTime)
         {
-            _lifeTime -= deltaTime;
-            if (_isActive && _lifeTime > 0)
+            lifeTime -= deltaTime;
+            if (_isActive && lifeTime > 0)
             {
                 if (_unit != null)
                 {

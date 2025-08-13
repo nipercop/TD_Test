@@ -148,7 +148,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c11ec89f04a79884292a2f8892653dfb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _units: []
 --- !u!4 &242922296
 Transform:
   m_ObjectHideFlags: 0
@@ -1090,36 +1089,56 @@ MonoBehaviour:
     Stats:
       Health: 15
       Damage: 5
-      MoveSpeed: 3
-      AttackSpeed: 0
+      MoveSpeed:
+        Value: 3
+        _valueBase: 0
+      AttackSpeed:
+        Value: 0
+        _valueBase: 0
   - PrefabEnemy: {fileID: 901565733775393165, guid: 9316c7c28e3a5f74eb820dad72115ade, type: 3}
     Count: 15
     Stats:
       Health: 20
       Damage: 5
-      MoveSpeed: 3
-      AttackSpeed: 0
+      MoveSpeed:
+        Value: 3
+        _valueBase: 0
+      AttackSpeed:
+        Value: 0
+        _valueBase: 0
   - PrefabEnemy: {fileID: 901565733775393165, guid: 9316c7c28e3a5f74eb820dad72115ade, type: 3}
     Count: 20
     Stats:
       Health: 25
       Damage: 5
-      MoveSpeed: 2
-      AttackSpeed: 0
+      MoveSpeed:
+        Value: 2
+        _valueBase: 0
+      AttackSpeed:
+        Value: 0
+        _valueBase: 0
   - PrefabEnemy: {fileID: 901565733775393165, guid: 9316c7c28e3a5f74eb820dad72115ade, type: 3}
     Count: 25
     Stats:
       Health: 40
       Damage: 5
-      MoveSpeed: 2
-      AttackSpeed: 0
+      MoveSpeed:
+        Value: 2
+        _valueBase: 0
+      AttackSpeed:
+        Value: 0
+        _valueBase: 0
   - PrefabEnemy: {fileID: 901565733775393165, guid: 9316c7c28e3a5f74eb820dad72115ade, type: 3}
     Count: 50
     Stats:
       Health: 50
       Damage: 5
-      MoveSpeed: 2
-      AttackSpeed: 0
+      MoveSpeed:
+        Value: 1.5
+        _valueBase: 0
+      AttackSpeed:
+        Value: 0
+        _valueBase: 0
 --- !u!4 &1457079454
 Transform:
   m_ObjectHideFlags: 0
@@ -1396,6 +1415,10 @@ PrefabInstance:
     - target: {fileID: 7770359373043940727, guid: 4e7bf225f25c5694498bcadc3b0311f1, type: 3}
       propertyPath: m_Name
       value: Townhall
+      objectReference: {fileID: 0}
+    - target: {fileID: 7770359373043940727, guid: 4e7bf225f25c5694498bcadc3b0311f1, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

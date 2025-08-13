@@ -1,3 +1,4 @@
+using Game.DataBase.Abilities.Logic;
 using UnityEngine;
 
 namespace Game.DataBase.Abilities
@@ -9,5 +10,6 @@ namespace Game.DataBase.Abilities
         public string Name;
         public float LifeTime;
 
+        public AbilityChangeStats[] StatsToChange;
     }
 }

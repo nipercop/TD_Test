@@ -18,7 +18,7 @@ namespace Game.GamePlayCore.Units.Logic.Attack
         {
             if (_target != null)
             {
-                _timerAttack -= deltaTime * attackableUnit.Stats.AttackSpeed;
+                _timerAttack -= deltaTime * attackableUnit.Stats.AttackSpeed.Value;
                 TryAttackTarget( attackableUnit);
             }
             else

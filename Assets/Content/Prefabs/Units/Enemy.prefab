@@ -103,8 +103,10 @@ MonoBehaviour:
   _stats:
     Health: 1
     Damage: 5
-    MoveSpeed: 1
-    AttackSpeed: 1
+    MoveSpeed:
+      Value: 3
+    AttackSpeed:
+      Value: 0
   _faction: 1
   _simpleAttackMelee: {fileID: 661117177146930207}
 --- !u!114 &661117177146930207

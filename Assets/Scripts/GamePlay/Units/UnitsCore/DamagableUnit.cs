@@ -1,5 +1,5 @@
-using System.Collections.Generic;
-using Game.GamePlayCore.Abilities;
+using Game.DataBase.Abilities.Logic;
+using Game.DataBase.Units;
 using Game.GamePlayCore.Interfaces;
 using Game.GamePlayCore.Interfaces.Systems;
 using Game.GamePlayCore.Interfaces.Units;
@@ -18,13 +18,12 @@ namespace Game.GamePlayCore.Units
         [Inject] protected UnitsSystem _unitsSystem;
         [Inject] protected IGamePlayUpdater _gamePlayUpdater;
         
-        //private List<AbilityCore> _abilities = new List<AbilityCore>();
-        
         public StatsUnit Stats => _stats;
         public int Faction => _faction;
 
         protected virtual void Start()
         {
+            _stats = new StatsUnit(_stats);
             _unitsSystem.AddUnit(this);
             _gamePlayUpdater.AddUpdatable(this);
         }
@@ -46,24 +45,49 @@ namespace Game.GamePlayCore.Units
 
         protected virtual void Die()
         {
-            // foreach (var ability in _abilities)
-            // {
-            //     ability.Deactivate();
-            // }
-            // _abilities.Clear();
             Destroy(gameObject);
+        }
+
+        public void IncreaseStats(int id, params AbilityChangeStats[] statsToChange)
+        {
+            foreach (var stat in statsToChange)
+            {
+                var newStats = _stats;
+                switch (stat.statType)
+                { 
+                    case StatsType.MoveSpeed:
+                        newStats.MoveSpeed.AddChangeStat(id, stat);
+                        break;
+                    case StatsType.AttackSpeed:
+                        newStats.AttackSpeed.AddChangeStat(id, stat);
+                        break;
+                }
+                _stats = newStats;
+            }
+        }
+        
+        public void DecreaseStats(int id, params AbilityChangeStats[] statsToChange)
+        {
+            foreach (var stat in statsToChange)
+            {
+                var newStats = _stats;
+                switch (stat.statType)
+                { 
+                    case StatsType.MoveSpeed:
+                        newStats.MoveSpeed.RemoveChangeStat(id);
+                        break;
+                    case StatsType.AttackSpeed:
+                        newStats.AttackSpeed.RemoveChangeStat(id);
+                        break;
+                }
+                _stats = newStats;
+            }
         }
 
         public virtual void SetSpawnData(SpawnData spawnData)
         {
-            _stats = spawnData.NewStats;
+            _stats = new StatsUnit(spawnData.NewStats);
         }
-
-        // public virtual void SetAbility(AbilityCore ability)
-        // {
-        //     _abilities.Add(ability);
-        // }
-        
         
         public virtual void DoUpdate(float deltaTime)
         {
