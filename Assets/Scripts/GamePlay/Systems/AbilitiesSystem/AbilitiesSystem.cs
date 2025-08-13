@@ -45,11 +45,6 @@ namespace Game.GamePlayCore.Abilities
                 _datas[i] = new AbilityCore(dataBase.AbilityDatas[i]);
             }
         }
-
-        public void ActivateAbility(int id)
-        {
-            
-        }
         
         public void ActivateAbility(int id, DamagableUnit target)
         {
@@ -57,7 +52,7 @@ namespace Game.GamePlayCore.Abilities
             {
                 if (abilityCore.Id == id)
                 {
-                    var activatedAbility = new AbilityCore(abilityCore, target);
+                    var activatedAbility = new AbilityCore(abilityCore);
                     activatedAbility.Activate(target, this);
                     _abilities.Add(activatedAbility);
                 }

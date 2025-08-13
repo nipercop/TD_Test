@@ -2,7 +2,6 @@ using Game.Abstractions.Ability;
 using Game.DataBase.Abilities;
 using Game.DataBase.Abilities.Logic;
 using Game.GamePlayCore.Units;
-using UnityEngine;
 
 namespace Game.GamePlayCore.Abilities
 {
@@ -19,7 +18,7 @@ namespace Game.GamePlayCore.Abilities
         public bool IsActive => _isActive;
         
 
-        public AbilityCore(AbilityData  data)
+        public AbilityCore(IAbilityData  data)
         {
             Id = data.Id;
             Name = data.Name;
@@ -27,12 +26,11 @@ namespace Game.GamePlayCore.Abilities
             logics = data.Logics;
         }
 
-        public AbilityCore(AbilityCore original, DamagableUnit target)
+        public AbilityCore(AbilityCore original)
         {
             Id = original.Id;
             Name = original.Name;
             lifeTime = original.lifeTime;
-            _unit = target;
             _isActive = true;
             logics = original.logics;
         }

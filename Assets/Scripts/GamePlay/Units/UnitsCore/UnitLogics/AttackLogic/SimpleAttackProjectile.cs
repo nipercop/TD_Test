@@ -1,8 +1,6 @@
 using Game.GamePlayCore.Interfaces.Units;
 using Game.GamePlayCore.Interfaces.Units.Logic.Attack;
 using Game.GamePlayCore.Projectiles;
-using Game.GamePlayCore.Stats;
-using Game.GamePlayCore.Systems.Spawners.Data;
 using UnityEngine;
 
 namespace Game.GamePlayCore.Units.Logic.Attack
@@ -18,7 +16,7 @@ namespace Game.GamePlayCore.Units.Logic.Attack
         {
             if (_target != null)
             {
-                _timerAttack -= deltaTime * attackableUnit.Stats.uAttackSpeed.uValue;
+                _timerAttack -= deltaTime * attackableUnit.Stats.AttackSpeed;
                 TryAttackTarget( attackableUnit);
             }
             else
@@ -62,7 +60,7 @@ namespace Game.GamePlayCore.Units.Logic.Attack
             {
                 _timerAttack = 1f;
                 var projectile = CreateProjectile(_projectile, transform.position);
-                projectile.SetDamage(attackableUnit.Stats.uDamage);
+                projectile.SetDamage(attackableUnit.Stats.Damage);
                 projectile.SetTarget(_target);
             }
         }

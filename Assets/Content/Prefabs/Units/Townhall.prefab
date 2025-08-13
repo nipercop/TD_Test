@@ -132,6 +132,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _stats:
-    Health: 100
-    MoveSpeed: 0
-    AttackSpeed: 0
+    _health: 100
+    _damage: 0
+    _moveSpeed:
+      _value: 0
+    _attackSpeed:
+      _value: 0
+  _faction: 0

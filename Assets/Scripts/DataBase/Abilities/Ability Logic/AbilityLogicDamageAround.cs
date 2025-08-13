@@ -22,10 +22,5 @@ namespace Game.DataBase.Abilities.Logic
             }
             
         }
-
-        public override void Deactivate(int abilityId, IAbilityTarget target, IAbilitiesSystemProvider  abilitiesProvider)
-        {
-            
-        }
     }
 }

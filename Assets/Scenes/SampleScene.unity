@@ -949,7 +949,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5394253814951709151, guid: e730ec16065133846a3f2413845134c9, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5517760765138432309, guid: e730ec16065133846a3f2413845134c9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1087,48 +1087,48 @@ MonoBehaviour:
   - PrefabEnemy: {fileID: 901565733775393165, guid: 9316c7c28e3a5f74eb820dad72115ade, type: 3}
     Count: 5
     Stats:
-      Health: 15
-      Damage: 5
-      MoveSpeed:
-        Value: 3
-      AttackSpeed:
-        Value: 0
+      _health: 10
+      _damage: 5
+      _moveSpeed:
+        _value: 3
+      _attackSpeed:
+        _value: 0
   - PrefabEnemy: {fileID: 901565733775393165, guid: 9316c7c28e3a5f74eb820dad72115ade, type: 3}
     Count: 15
     Stats:
-      Health: 20
-      Damage: 5
-      MoveSpeed:
-        Value: 3
-      AttackSpeed:
-        Value: 0
+      _health: 15
+      _damage: 5
+      _moveSpeed:
+        _value: 2
+      _attackSpeed:
+        _value: 0
   - PrefabEnemy: {fileID: 901565733775393165, guid: 9316c7c28e3a5f74eb820dad72115ade, type: 3}
     Count: 20
     Stats:
-      Health: 25
-      Damage: 5
-      MoveSpeed:
-        Value: 2
-      AttackSpeed:
-        Value: 0
+      _health: 20
+      _damage: 4
+      _moveSpeed:
+        _value: 1.5
+      _attackSpeed:
+        _value: 0
   - PrefabEnemy: {fileID: 901565733775393165, guid: 9316c7c28e3a5f74eb820dad72115ade, type: 3}
     Count: 25
     Stats:
-      Health: 40
-      Damage: 5
-      MoveSpeed:
-        Value: 2
-      AttackSpeed:
-        Value: 0
+      _health: 25
+      _damage: 3
+      _moveSpeed:
+        _value: 1.5
+      _attackSpeed:
+        _value: 0
   - PrefabEnemy: {fileID: 901565733775393165, guid: 9316c7c28e3a5f74eb820dad72115ade, type: 3}
     Count: 50
     Stats:
-      Health: 50
-      Damage: 5
-      MoveSpeed:
-        Value: 1.5
-      AttackSpeed:
-        Value: 0
+      _health: 30
+      _damage: 1
+      _moveSpeed:
+        _value: 1
+      _attackSpeed:
+        _value: 0
 --- !u!4 &1457079454
 Transform:
   m_ObjectHideFlags: 0
@@ -1408,7 +1408,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7770359373043940727, guid: 4e7bf225f25c5694498bcadc3b0311f1, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

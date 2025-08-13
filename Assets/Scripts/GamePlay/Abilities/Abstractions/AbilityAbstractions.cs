@@ -6,17 +6,17 @@ namespace Game.Abstractions.Ability
     
     public interface IStatsUnit
     {
-        int uHealth { get; set; }
-        int uDamage { get; set; }
-        IFloatValue uMoveSpeed { get; set; }
-        IFloatValue uAttackSpeed { get; set; }
+        int Health { get; set; }
+        int Damage { get; set; }
+        float MoveSpeed { get; }
+        float AttackSpeed { get; }
         void IncreaseValue(int id, IAbilityChangeStats stats);
         void DecreaseValue(int id, IAbilityChangeStats stats);
     }
 
     public interface IFloatValue
     {
-        float uValue { get; }
+        float Value { get; }
         void AddChangeStat(int id, StatsChangeType changeType, float value);
         void RemoveChangeStat(int id);
     }
@@ -31,7 +31,7 @@ namespace Game.Abstractions.Ability
     public enum StatsChangeType
     {
         Additive,
-        Multiplicative
+        Percentage
     }
     
     public enum StatsType

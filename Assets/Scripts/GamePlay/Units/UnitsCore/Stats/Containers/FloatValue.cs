@@ -20,22 +20,29 @@ namespace Game.GamePlayCore.Stats
     [System.Serializable]
     public struct FloatValue : IFloatValue
     {
-        public float Value;
+        [SerializeField] private float _value;
         private float _valueBase;
         private Dictionary<int,ValueChanger> _changers;
-        public float uValue => Value;
+        public float Value => _value;
 
         public FloatValue(float value)
         {
-            Value = value;
+            _value = value;
             _valueBase = value;
+            _changers = new Dictionary<int, ValueChanger>();
+        }
+        
+        public FloatValue(FloatValue floatValue)
+        {
+            _value = floatValue._value;
+            _valueBase = floatValue._value;
             _changers = new Dictionary<int, ValueChanger>();
         }
 
 
         public void AddChangeStat(int id, StatsChangeType changeType, float value)
         {
-            _changers.Add(id, new ValueChanger(changeType, value));
+            _changers.TryAdd(id, new ValueChanger(changeType, value));
             Calculate();
         }
 
@@ -56,14 +63,12 @@ namespace Game.GamePlayCore.Stats
                     case StatsChangeType.Additive:
                         sumAdd += changer.Value.Value;
                         break;
-                    case StatsChangeType.Multiplicative:
+                    case StatsChangeType.Percentage:
                         sumMultiplier += changer.Value.Value;
                         break;
                 }
             }
-            Value = (_valueBase + sumAdd ) * sumMultiplier;
-            Debug.Log("Calculate Value "+ Value);
-            Debug.Log("Calculate uValue "+ uValue);
+            _value = (_valueBase + sumAdd ) * sumMultiplier;
         }
     }
 }

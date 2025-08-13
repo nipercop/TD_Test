@@ -13,5 +13,4 @@ MonoBehaviour:
   m_Name: Ability Logic Damage Around 50_5_Enemy
   m_EditorClassIdentifier: 
   _damage: 50
-  _radius: 5
-  _targets: 0
+  _radius: 7

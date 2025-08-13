@@ -1,5 +1,6 @@
 
 using Game.Abstractions.Ability;
+using UnityEngine;
 using StatsType = Game.Abstractions.Ability.StatsType;
 
 namespace Game.GamePlayCore.Stats
@@ -7,48 +8,38 @@ namespace Game.GamePlayCore.Stats
     [System.Serializable]
     public struct StatsUnit : IStatsUnit
     {
-        public int Health;
-        public int Damage;
-        public FloatValue MoveSpeed;
-        public FloatValue AttackSpeed;
+        [SerializeField] private int _health;
+        [SerializeField] private int _damage;
+        [SerializeField] private FloatValue _moveSpeed;
+        [SerializeField] private FloatValue _attackSpeed;
 
-        public int uHealth
+        public int Health
         {
-            get { return Health; }
-            set { Health = value; }
-        }
-
-        public int uDamage  {
-            get { return Damage; }
-            set { Damage = value; }
-        }
-        
-        IFloatValue IStatsUnit.uMoveSpeed
-        {
-            get => MoveSpeed;
-            set => MoveSpeed = (FloatValue) value;
+            get { return _health; }
+            set { _health = value; }
         }
 
-        IFloatValue IStatsUnit.uAttackSpeed
-        {
-            get => AttackSpeed;
-            set => AttackSpeed = (FloatValue)  value;
+        public int Damage  {
+            get { return _damage; }
+            set { _damage = value; }
         }
+        public float MoveSpeed => _moveSpeed.Value;
+        public float AttackSpeed => _attackSpeed.Value;
 
         public StatsUnit(StatsUnit other)
         {
-            Health = other.Health;
-            Damage = other.Damage;
-            MoveSpeed = new FloatValue(other.MoveSpeed.Value);
-            AttackSpeed = new FloatValue(other.AttackSpeed.Value);
+            _health = other._health;
+            _damage = other._damage;
+            _moveSpeed = new FloatValue(other._moveSpeed);
+            _attackSpeed = new FloatValue(other._attackSpeed);
         }
         
         public StatsUnit(int health, int damage, float moveSpeed, float attackSpeed)
         {
-            Health = health;
-            Damage = damage;
-            MoveSpeed = new FloatValue(moveSpeed);
-            AttackSpeed = new FloatValue(attackSpeed);
+            _health = health;
+            _damage = damage;
+            _moveSpeed = new FloatValue(moveSpeed);
+            _attackSpeed = new FloatValue(attackSpeed);
         }
 
         public void IncreaseValue(int id, IAbilityChangeStats stats)
@@ -56,10 +47,10 @@ namespace Game.GamePlayCore.Stats
             switch (stats.StatType)
             {
                 case StatsType.MoveSpeed:
-                    MoveSpeed.AddChangeStat(id, stats.StatsChangeType, stats.Value);
+                    _moveSpeed.AddChangeStat(id, stats.StatsChangeType, stats.Value);
                     break;
                 case StatsType.AttackSpeed :
-                    AttackSpeed.AddChangeStat(id, stats.StatsChangeType, stats.Value);
+                    _attackSpeed.AddChangeStat(id, stats.StatsChangeType, stats.Value);
                     break;
             }
         }
@@ -69,10 +60,10 @@ namespace Game.GamePlayCore.Stats
             switch (stats.StatType)
             {
                 case StatsType.MoveSpeed:
-                    MoveSpeed.RemoveChangeStat(id);
+                    _moveSpeed.RemoveChangeStat(id);
                     break;
                 case StatsType.AttackSpeed :
-                    AttackSpeed.RemoveChangeStat(id);
+                    _attackSpeed.RemoveChangeStat(id);
                     break;
             }
         }

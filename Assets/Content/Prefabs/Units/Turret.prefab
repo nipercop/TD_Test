@@ -101,12 +101,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _stats:
-    Health: 10
-    Damage: 25
-    MoveSpeed:
-      Value: 0
-    AttackSpeed:
-      Value: 1
+    _health: 50
+    _damage: 25
+    _moveSpeed:
+      _value: 0
+    _attackSpeed:
+      _value: 1
   _faction: 0
   attackProjectileLogic: {fileID: -147625777843741823}
 --- !u!114 &-147625777843741823

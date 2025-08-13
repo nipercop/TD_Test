@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7220aeba68779db4ab42b81ffb587367, type: 3}
-  m_Name: Ability Logic Increase Reload 20 percent
+  m_Name: Ability Logic Increase Reload 30 percent
   m_EditorClassIdentifier: 
   statsChanger:
     _statsType: 3
     _statsChangeType: 1
-    _value: 0.2
+    _value: 3

@@ -4,7 +4,6 @@ using Game.GamePlayCore.Interfaces.Abilities;
 using Game.GamePlayCore.Systems.Units;
 using Game.UI.Abilities.Model;
 using Game.UI.Abilities.View;
-using UnityEngine;
 
 namespace Game.UI.Abilities.Presenter
 {
