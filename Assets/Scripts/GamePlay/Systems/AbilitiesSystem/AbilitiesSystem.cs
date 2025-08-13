@@ -6,16 +6,20 @@ using UnityEngine;
 using VContainer;
 using VContainer.Unity;
 using System;
+using System.Collections.Generic;
+using Game.GamePlayCore.Systems.Units;
+using Game.GamePlayCore.Units;
 
 namespace Game.GamePlayCore.Abilities
 {
-    public class AbilitiesSystem : IAbilitiesSystem , IAsyncStartable
+    public class AbilitiesSystem : IAbilitiesSystem , IAsyncStartable, ITickable
     {
         [Inject] private readonly ScriptableObjectLoader _loader;
+        
         private AbilityCore[] _datas;
         public AbilityCore[] Datas => _datas;
-        
         public event Action AbilitiesLoaded;
+        private List<AbilityCore> _abilities = new List<AbilityCore>();
 
         public async Awaitable StartAsync(CancellationToken cancellation = new CancellationToken())
         {
@@ -36,6 +40,29 @@ namespace Game.GamePlayCore.Abilities
             {
                 _datas[i] = new AbilityCore(dataBase.AbilityDatas[i]);
             }
+        }
+
+        public void ActivateAbility(int id)
+        {
+            
+        }
+        
+        public void ActivateAbility(int id, DamagableUnit target)
+        {
+            foreach (var abilityCore in _datas)
+            {
+                if (abilityCore.Id == id)
+                {
+                    var activatedAbility = new AbilityCore(abilityCore, target);
+                    //target.SetAbility(activatedAbility);
+                    _abilities.Add(activatedAbility);
+                }
+            }
+        }
+
+        public void Tick()
+        {
+             
         }
     }
 }

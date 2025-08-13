@@ -12,7 +12,7 @@ namespace Game.GamePlayCore.Systems.StateMachine
 
         public override void DoUpdate(float deltaTime)
         {
-            if (_unitsSystem.Units.Count == 0)
+            if (_unitsSystem.EnemyUnits.Count == 0)
             {
                 _gamePlayStateSystem.ChangeState(GameState.Idle);
             }

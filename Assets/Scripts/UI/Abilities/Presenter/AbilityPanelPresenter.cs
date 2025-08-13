@@ -1,6 +1,7 @@
 using System;
 using Game.GamePlayCore.Abilities;
 using Game.GamePlayCore.Interfaces.Abilities;
+using Game.GamePlayCore.Systems.Units;
 using Game.UI.Abilities.Model;
 using Game.UI.Abilities.View;
 using UnityEngine;
@@ -13,9 +14,12 @@ namespace Game.UI.Abilities.Presenter
         private AbilityPanelView _view;
         private readonly AbilityPanelModel _model;
         private readonly IAbilitiesSystem _abilitiesSystem;
+        private readonly UnitsSystem  _unitsSystem;
 
-        public AbilityPanelPresenter(AbilityPanelModel model)
+        public AbilityPanelPresenter(AbilityPanelModel model,  IAbilitiesSystem abilitiesSystem, UnitsSystem  unitsSystem)
         {
+            _unitsSystem = unitsSystem;
+            _abilitiesSystem = abilitiesSystem;
             _model = model;
             _model.OnAbilitiesLoaded += OnAbilitiesLoaded;
         }
@@ -35,7 +39,15 @@ namespace Game.UI.Abilities.Presenter
 
         public void OnAbilityClicked(int abilityId)
         {
-            Debug.Log("OnAbilityClicked = "+ abilityId);
+            int myFaction = 0; // TODO: temp code
+            var units = _unitsSystem.AllUnits;
+            foreach (var unit in units)
+            {
+                if (unit.Faction == myFaction)
+                {
+                    _abilitiesSystem.ActivateAbility(abilityId, unit);
+                }
+            }
         }
 
         public void Dispose()

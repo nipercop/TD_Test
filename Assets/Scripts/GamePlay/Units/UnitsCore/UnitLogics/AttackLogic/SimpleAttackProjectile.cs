@@ -30,17 +30,20 @@ namespace Game.GamePlayCore.Units.Logic.Attack
         private void FindTarget(IAttackable attackableUnit)
         {
             Vector3 attackerPosition = attackableUnit.UnitTransform.position;
-            var targets = attackableUnit.UnitsSystem.Units;
+            var targets = attackableUnit.UnitsSystem.AllUnits;
             float distance = float.MaxValue;
             DamagableUnit target = null;
             for (var i = 0; i < targets.Count; i++)
             {
                 var unit = targets[i];
-                float sqrDist = GetSqrDistance(attackerPosition, unit);
-                if (sqrDist < distance && sqrDist < _radiusAttack * _radiusAttack)
+                if (unit.Faction != attackableUnit.Faction)
                 {
-                    distance = sqrDist;
-                    target = unit;
+                    float sqrDist = GetSqrDistance(attackerPosition, unit);
+                    if (sqrDist < distance && sqrDist < _radiusAttack * _radiusAttack)
+                    {
+                        distance = sqrDist;
+                        target = unit;
+                    }
                 }
             }
             _target = target;

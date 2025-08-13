@@ -105,6 +105,7 @@ MonoBehaviour:
     Damage: 5
     MoveSpeed: 1
     AttackSpeed: 1
+  _faction: 1
   _simpleAttackMelee: {fileID: 661117177146930207}
 --- !u!114 &661117177146930207
 MonoBehaviour:

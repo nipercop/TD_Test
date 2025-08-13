@@ -20,7 +20,7 @@ namespace Game.LifeTimeScope.GamePlayCore
         protected override void Configure(IContainerBuilder builder)
         {
             builder.Register<ScriptableObjectLoader>(Lifetime.Singleton).AsSelf();
-            builder.Register<AbilitiesSystem>(Lifetime.Singleton).As<IAbilitiesSystem>().As<IAsyncStartable>();
+            builder.Register<AbilitiesSystem>(Lifetime.Singleton).As<IAbilitiesSystem>().As<IAsyncStartable, ITickable>();
             builder.RegisterComponentInHierarchy<GamePlayUpdater>().As<IGamePlayUpdater>();
             builder.Register<EnemySpawnerSystem>(Lifetime.Scoped).As<ISpawnerSystem>();
             builder.RegisterComponentInHierarchy<GamePlayStateSystem>();

@@ -12,18 +12,6 @@ namespace Game.GamePlayCore.Units
         [SerializeField] private SimpleAttackMelee _simpleAttackMelee;
         private DamagableUnit _targetToMove;
 
-        protected override void Start()
-        {
-            base.Start();
-            _unitsSystem.AddUnit(this);
-        }
-
-        protected override void OnDestroy()
-        {
-            base.OnDestroy();
-            _unitsSystem.RemoveUnit(this);
-        }
-
         public override void SetSpawnData(SpawnData spawnData)
         {
             base.SetSpawnData(spawnData);
