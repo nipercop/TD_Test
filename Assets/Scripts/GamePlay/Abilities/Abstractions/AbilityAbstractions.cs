@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace Game.Abstractions.Ability
@@ -44,5 +45,14 @@ namespace Game.Abstractions.Ability
     public interface IAbilityTarget
     {
         IStatsUnit Stats { get; set; }
+        void Die();
+        void TakeDamage(int damage);
+        int Faction { get; }
+        Vector3 Position { get; }
+    }
+
+    public interface IAbilitiesSystemProvider
+    {
+        IReadOnlyList<IAbilityTarget> AllUnits { get; }
     }
 }

@@ -1,3 +1,4 @@
+using Game.Abstractions.Ability;
 using Game.DataBase.Abilities;
 using Game.DataBase.Abilities.Logic;
 using Game.GamePlayCore.Units;
@@ -22,7 +23,7 @@ namespace Game.GamePlayCore.Abilities
         {
             Id = data.Id;
             Name = data.Name;
-            lifeTime = data.LifeTime;
+            lifeTime = data.Duration;
             logics = data.Logics;
         }
 
@@ -36,24 +37,23 @@ namespace Game.GamePlayCore.Abilities
             logics = original.logics;
         }
 
-        public virtual void Activate(DamagableUnit  target)
+        public virtual void Activate(DamagableUnit  target, IAbilitiesSystemProvider  abilitiesProvider)
         {
             _unit = target;
             _isActive = true;
             foreach (var logic in logics)
             {
-                logic.Activate(_unit);
+                logic.Activate(Id, _unit, abilitiesProvider);
             }
-            //_unit.IncreaseStats(Id, statsToChange);
         }
 
-        public virtual void Deactivate()
+        public virtual void Deactivate(IAbilitiesSystemProvider  abilitiesProvider)
         {
             if (_unit != null)
             {
                 foreach (var logic in logics)
                 {
-                    logic.Deactivate(_unit);
+                    logic.Deactivate(Id, _unit, abilitiesProvider);
                 }
             }
             _unit = null;

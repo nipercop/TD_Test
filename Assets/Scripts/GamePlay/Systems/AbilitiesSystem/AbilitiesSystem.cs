@@ -7,17 +7,20 @@ using VContainer;
 using VContainer.Unity;
 using System;
 using System.Collections.Generic;
+using Game.Abstractions.Ability;
 using Game.GamePlayCore.Systems.Units;
 using Game.GamePlayCore.Units;
 
 namespace Game.GamePlayCore.Abilities
 {
-    public class AbilitiesSystem : IAbilitiesSystem , IAsyncStartable, ITickable
+    public class AbilitiesSystem : IAbilitiesSystem , IAsyncStartable, ITickable, IAbilitiesSystemProvider
     {
         [Inject] private readonly ScriptableObjectLoader _loader;
+        [Inject] private readonly UnitsSystem _unitsSystem;
         
         private AbilityCore[] _datas;
         public AbilityCore[] Datas => _datas;
+        public IReadOnlyList<IAbilityTarget> AllUnits => _unitsSystem.AllUnits;
         public event Action AbilitiesLoaded;
         private List<AbilityCore> _abilities = new List<AbilityCore>();
         private List<AbilityCore> _toRemove = new List<AbilityCore>();
@@ -55,7 +58,7 @@ namespace Game.GamePlayCore.Abilities
                 if (abilityCore.Id == id)
                 {
                     var activatedAbility = new AbilityCore(abilityCore, target);
-                    activatedAbility.Activate(target);
+                    activatedAbility.Activate(target, this);
                     _abilities.Add(activatedAbility);
                 }
             }
@@ -71,7 +74,7 @@ namespace Game.GamePlayCore.Abilities
                 currentAbility.DoUpdate(deltaTime);
                 if (currentAbility.LifeTime < 0 || !currentAbility.IsActive)
                 {
-                    currentAbility.Deactivate();
+                    currentAbility.Deactivate(this);
                     _toRemove.Add(currentAbility);
                 }
             }

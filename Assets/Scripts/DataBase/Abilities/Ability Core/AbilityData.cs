@@ -8,7 +8,8 @@ namespace Game.DataBase.Abilities
     {
         public int Id;
         public string Name;
-        public float LifeTime;
+        public float Duration;
+        public float Cooldown;
 
         public AbilityLogicCore[] Logics;
 

@@ -9,7 +9,7 @@ namespace Game.GamePlayCore.Units
     {
         [Inject] private GamePlayStateSystem _gamePlayStateSystem;
         
-        protected override void Die()
+        public override void Die()
         {
             _gamePlayStateSystem.ChangeState(GameState.EndGame);
             base.Die();

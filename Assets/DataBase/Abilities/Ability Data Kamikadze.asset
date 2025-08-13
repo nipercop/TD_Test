@@ -14,3 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Id: 1
   Name: Kamikadze
+  Duration: 0
+  Cooldown: 0
+  Logics:
+  - {fileID: 11400000, guid: dca516e3005fd2d4aae2cfd7839459c7, type: 2}
+  - {fileID: 11400000, guid: 1ccd7dab20c76b245bdd0ab0ec3943ea, type: 2}

@@ -8,11 +8,10 @@ using Game.GamePlayCore.Systems.Spawners.Data;
 using Game.GamePlayCore.Systems.Units;
 using UnityEngine;
 using VContainer;
-using IDamagable = Game.GamePlayCore.Interfaces.Units.IDamagable;
 
 namespace Game.GamePlayCore.Units
 {
-    public abstract class DamagableUnit : MonoBehaviour , IDamagable, IUpdatable, IAbilityTarget
+    public abstract class DamagableUnit : MonoBehaviour, IUpdatable, IAbilityTarget
     {
         [SerializeField] protected StatsUnit _stats;
         [SerializeField] protected int _faction;
@@ -26,6 +25,7 @@ namespace Game.GamePlayCore.Units
         }
 
         public int Faction => _faction;
+        public Vector3 Position => transform.position;
 
         protected virtual void Start()
         {
@@ -49,7 +49,7 @@ namespace Game.GamePlayCore.Units
             }
         }
 
-        protected virtual void Die()
+        public virtual void Die()
         {
             Destroy(gameObject);
         }

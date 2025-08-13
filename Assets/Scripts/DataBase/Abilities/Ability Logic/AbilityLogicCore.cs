@@ -5,8 +5,8 @@ namespace Game.DataBase.Abilities.Logic
 {
     public abstract class AbilityLogicCore : ScriptableObject
     {
-        public int Id;
-        public abstract void Activate(IAbilityTarget target);
-        public abstract void Deactivate(IAbilityTarget target);
+        public abstract void Activate(int abilityId,IAbilityTarget target, IAbilitiesSystemProvider  abilitiesProvider);
+        public abstract void Deactivate(int abilityId,IAbilityTarget target, IAbilitiesSystemProvider  abilitiesProvider);
+        public virtual void DoUpdate(float deltaTime) { }
     }
 }

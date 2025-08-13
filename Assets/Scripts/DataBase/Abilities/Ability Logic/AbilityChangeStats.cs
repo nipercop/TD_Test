@@ -3,21 +3,21 @@ using UnityEngine;
 
 namespace Game.DataBase.Abilities.Logic
 {
-    [CreateAssetMenu(fileName = "Ability Change Stats", menuName = "Game/DataBase/Ability/Logics/Ability Change Stats")]
+    [CreateAssetMenu(fileName = "Logic Ability Change Stats", menuName = "Game/DataBase/Ability/Logics/Logic Ability Change Stats")]
     public class AbilityChangeStats : AbilityLogicCore
     {
         public SimpleStatChange statsChanger;
-        public override void Activate(IAbilityTarget target)
+        public override void Activate(int abilityId, IAbilityTarget target, IAbilitiesSystemProvider  abilitiesProvider)
         {
             var stats = target.Stats;
-            stats.IncreaseValue(Id, statsChanger);
+            stats.IncreaseValue(abilityId, statsChanger);
             target.Stats = stats;
         }
 
-        public override void Deactivate(IAbilityTarget target)
+        public override void Deactivate(int abilityId, IAbilityTarget target, IAbilitiesSystemProvider  abilitiesProvider)
         {
             var stats = target.Stats;
-            stats.DecreaseValue(Id, statsChanger);
+            stats.DecreaseValue(abilityId, statsChanger);
             target.Stats = stats;
         }
     }

@@ -949,7 +949,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5394253814951709151, guid: e730ec16065133846a3f2413845134c9, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5517760765138432309, guid: e730ec16065133846a3f2413845134c9, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1091,10 +1091,8 @@ MonoBehaviour:
       Damage: 5
       MoveSpeed:
         Value: 3
-        _valueBase: 0
       AttackSpeed:
         Value: 0
-        _valueBase: 0
   - PrefabEnemy: {fileID: 901565733775393165, guid: 9316c7c28e3a5f74eb820dad72115ade, type: 3}
     Count: 15
     Stats:
@@ -1102,10 +1100,8 @@ MonoBehaviour:
       Damage: 5
       MoveSpeed:
         Value: 3
-        _valueBase: 0
       AttackSpeed:
         Value: 0
-        _valueBase: 0
   - PrefabEnemy: {fileID: 901565733775393165, guid: 9316c7c28e3a5f74eb820dad72115ade, type: 3}
     Count: 20
     Stats:
@@ -1113,10 +1109,8 @@ MonoBehaviour:
       Damage: 5
       MoveSpeed:
         Value: 2
-        _valueBase: 0
       AttackSpeed:
         Value: 0
-        _valueBase: 0
   - PrefabEnemy: {fileID: 901565733775393165, guid: 9316c7c28e3a5f74eb820dad72115ade, type: 3}
     Count: 25
     Stats:
@@ -1124,10 +1118,8 @@ MonoBehaviour:
       Damage: 5
       MoveSpeed:
         Value: 2
-        _valueBase: 0
       AttackSpeed:
         Value: 0
-        _valueBase: 0
   - PrefabEnemy: {fileID: 901565733775393165, guid: 9316c7c28e3a5f74eb820dad72115ade, type: 3}
     Count: 50
     Stats:
@@ -1135,10 +1127,8 @@ MonoBehaviour:
       Damage: 5
       MoveSpeed:
         Value: 1.5
-        _valueBase: 0
       AttackSpeed:
         Value: 0
-        _valueBase: 0
 --- !u!4 &1457079454
 Transform:
   m_ObjectHideFlags: 0
@@ -1418,7 +1408,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7770359373043940727, guid: 4e7bf225f25c5694498bcadc3b0311f1, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
