@@ -9,10 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7220aeba68779db4ab42b81ffb587367, type: 3}
-  m_Name: Ability Logic Slow Move Speed 50 percent
+  m_Script: {fileID: 11500000, guid: bd5488657275a2a4e82e5e90c1d81230, type: 3}
+  m_Name: Ability Increase Reload Speed 30 percent
   m_EditorClassIdentifier: 
-  statsChanger:
-    _statsType: 2
-    _statsChangeType: 1
-    _value: -0.5
+  _id: 0
+  _name: Increase Reload Speed
+  _coolDown: 0
+  _logics:
+  - {fileID: 11400000, guid: 3f2cb765cb6d14c419c9f491723a768f, type: 2}
+  _duration: 20

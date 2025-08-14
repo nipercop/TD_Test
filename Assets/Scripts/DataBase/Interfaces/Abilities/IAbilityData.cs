@@ -8,7 +8,11 @@ namespace Game.DataBase.Abilities
         int Id { get; }
         string Name { get; }
         float Duration { get; }
+        float TickTime { get; }
+        int MaxStacks { get; }
         float CoolDown { get; }
         AbilityLogicCore[] Logics { get; }
+        AbilityType abilityType { get; }
+        
     }
 }

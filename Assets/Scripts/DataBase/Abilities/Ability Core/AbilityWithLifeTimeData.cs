@@ -7,5 +7,8 @@ namespace Game.DataBase.Abilities
     {
         [SerializeField] private float _duration;
         public override float Duration => _duration;
+        public override AbilityType abilityType => AbilityType.LifeTime;
+        
+        
     }
 }

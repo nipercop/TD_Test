@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Game.Abstractions.Ability;
 using Game.DataBase.Abilities.Logic;
@@ -24,6 +25,7 @@ namespace Game.GamePlayCore.Stats
         private float _valueBase;
         private Dictionary<int,ValueChanger> _changers;
         public float Value => _value;
+        public float ValueClampedMinusToOne => _value > 1 ? 1 : _value;
 
         public FloatValue(float value)
         {
@@ -42,7 +44,14 @@ namespace Game.GamePlayCore.Stats
 
         public void AddChangeStat(int id, StatsChangeType changeType, float value)
         {
-            _changers.TryAdd(id, new ValueChanger(changeType, value));
+            if (_changers.ContainsKey(id))
+            {
+                _changers[id] = new ValueChanger(changeType, value);
+            }
+            else
+            {
+                _changers.Add(id, new ValueChanger(changeType, value));
+            }
             Calculate();
         }
 
@@ -68,7 +77,7 @@ namespace Game.GamePlayCore.Stats
                         break;
                 }
             }
-            _value = (_valueBase + sumAdd ) * sumMultiplier;
+            _value = (_valueBase + sumAdd) * sumMultiplier;
         }
     }
 }

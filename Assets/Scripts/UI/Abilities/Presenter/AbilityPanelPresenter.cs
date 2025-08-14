@@ -38,7 +38,7 @@ namespace Game.UI.Abilities.Presenter
 
         public void OnAbilityClicked(int abilityId)
         {
-            int myFaction = 0; // TODO: temp code
+            int myFaction = abilityId != 3 ? 0 : 1; // TODO: temp code
             var units = _unitsSystem.AllUnits;
             foreach (var unit in units)
             {
@@ -47,6 +47,7 @@ namespace Game.UI.Abilities.Presenter
                     _abilitiesSystem.ActivateAbility(abilityId, unit);
                 }
             }
+            _view.RemoveAbility(abilityId);
         }
 
         public void Dispose()

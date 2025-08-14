@@ -9,6 +9,7 @@ namespace Game.UI.Abilities
         [SerializeField] private TMP_Text _text;
         private int _id;
         System.Action<int> _onClick;
+        public int Id => _id;
 
         public void SetData(int id, string nameAbility, System.Action<int> onClick)
         {

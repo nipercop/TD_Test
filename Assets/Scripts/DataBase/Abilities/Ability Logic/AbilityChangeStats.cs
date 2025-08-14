@@ -10,7 +10,7 @@ namespace Game.DataBase.Abilities.Logic
         public override void Activate(int abilityId, IAbilityTarget target, IAbilitiesSystemProvider  abilitiesProvider)
         {
             var stats = target.Stats;
-            stats.IncreaseValue(abilityId, statsChanger);
+            stats.IncreaseValue(abilityId, statsChanger.StatType, statsChanger.StatsChangeType, statsChanger.Value);
             target.Stats = stats;
         }
 
@@ -18,6 +18,13 @@ namespace Game.DataBase.Abilities.Logic
         {
             var stats = target.Stats;
             stats.DecreaseValue(abilityId, statsChanger);
+            target.Stats = stats;
+        }
+
+        public override void Activate(int abilityId, int stack, IAbilityTarget target, IAbilitiesSystemProvider abilitiesProvider)
+        {
+            var stats = target.Stats;
+            stats.IncreaseValue(abilityId, statsChanger.StatType, statsChanger.StatsChangeType, statsChanger.Value * stack);
             target.Stats = stats;
         }
     }

@@ -10,7 +10,8 @@ namespace Game.Abstractions.Ability
         int Damage { get; set; }
         float MoveSpeed { get; }
         float AttackSpeed { get; }
-        void IncreaseValue(int id, IAbilityChangeStats stats);
+        float ReceiveDamageResistance { get; }
+        void IncreaseValue(int id, StatsType statType, StatsChangeType changeType, float value);
         void DecreaseValue(int id, IAbilityChangeStats stats);
     }
 
@@ -39,7 +40,8 @@ namespace Game.Abstractions.Ability
         // Health = 0,
         // Damage = 1,
         MoveSpeed = 2,
-        AttackSpeed = 3
+        AttackSpeed = 3,
+        DamageResistance = 4
     }
 
     public interface IAbilityTarget

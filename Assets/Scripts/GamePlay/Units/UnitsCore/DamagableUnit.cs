@@ -42,7 +42,7 @@ namespace Game.GamePlayCore.Units
 
         public virtual void TakeDamage(int damage)
         {
-            _stats.Health -= damage;
+            _stats.Health -=  (int)(damage *  (1 - _stats.ReceiveDamageResistance));
             if (_stats.Health <= 0)
             {
                 Die();

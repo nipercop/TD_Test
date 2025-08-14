@@ -1093,6 +1093,8 @@ MonoBehaviour:
         _value: 3
       _attackSpeed:
         _value: 0
+      _receiveDamageResistance:
+        _value: 0
   - PrefabEnemy: {fileID: 901565733775393165, guid: 9316c7c28e3a5f74eb820dad72115ade, type: 3}
     Count: 15
     Stats:
@@ -1101,6 +1103,8 @@ MonoBehaviour:
       _moveSpeed:
         _value: 2
       _attackSpeed:
+        _value: 0
+      _receiveDamageResistance:
         _value: 0
   - PrefabEnemy: {fileID: 901565733775393165, guid: 9316c7c28e3a5f74eb820dad72115ade, type: 3}
     Count: 20
@@ -1111,6 +1115,8 @@ MonoBehaviour:
         _value: 1.5
       _attackSpeed:
         _value: 0
+      _receiveDamageResistance:
+        _value: 0
   - PrefabEnemy: {fileID: 901565733775393165, guid: 9316c7c28e3a5f74eb820dad72115ade, type: 3}
     Count: 25
     Stats:
@@ -1120,6 +1126,8 @@ MonoBehaviour:
         _value: 1.5
       _attackSpeed:
         _value: 0
+      _receiveDamageResistance:
+        _value: 0
   - PrefabEnemy: {fileID: 901565733775393165, guid: 9316c7c28e3a5f74eb820dad72115ade, type: 3}
     Count: 50
     Stats:
@@ -1128,6 +1136,8 @@ MonoBehaviour:
       _moveSpeed:
         _value: 1
       _attackSpeed:
+        _value: 0
+      _receiveDamageResistance:
         _value: 0
 --- !u!4 &1457079454
 Transform:

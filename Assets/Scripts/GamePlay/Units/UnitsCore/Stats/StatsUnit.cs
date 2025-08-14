@@ -12,6 +12,7 @@ namespace Game.GamePlayCore.Stats
         [SerializeField] private int _damage;
         [SerializeField] private FloatValue _moveSpeed;
         [SerializeField] private FloatValue _attackSpeed;
+        [SerializeField] private FloatValue _receiveDamageResistance;
 
         public int Health
         {
@@ -25,6 +26,7 @@ namespace Game.GamePlayCore.Stats
         }
         public float MoveSpeed => _moveSpeed.Value;
         public float AttackSpeed => _attackSpeed.Value;
+        public float ReceiveDamageResistance => _receiveDamageResistance.ValueClampedMinusToOne;
 
         public StatsUnit(StatsUnit other)
         {
@@ -32,25 +34,21 @@ namespace Game.GamePlayCore.Stats
             _damage = other._damage;
             _moveSpeed = new FloatValue(other._moveSpeed);
             _attackSpeed = new FloatValue(other._attackSpeed);
-        }
-        
-        public StatsUnit(int health, int damage, float moveSpeed, float attackSpeed)
-        {
-            _health = health;
-            _damage = damage;
-            _moveSpeed = new FloatValue(moveSpeed);
-            _attackSpeed = new FloatValue(attackSpeed);
+            _receiveDamageResistance = new FloatValue(other._receiveDamageResistance);
         }
 
-        public void IncreaseValue(int id, IAbilityChangeStats stats)
+        public void IncreaseValue(int id, StatsType statType, StatsChangeType changeType, float value)
         {
-            switch (stats.StatType)
+            switch (statType)
             {
                 case StatsType.MoveSpeed:
-                    _moveSpeed.AddChangeStat(id, stats.StatsChangeType, stats.Value);
+                    _moveSpeed.AddChangeStat(id, changeType, value);
                     break;
-                case StatsType.AttackSpeed :
-                    _attackSpeed.AddChangeStat(id, stats.StatsChangeType, stats.Value);
+                case StatsType.AttackSpeed:
+                    _attackSpeed.AddChangeStat(id, changeType,value);
+                    break;
+                case StatsType.DamageResistance:
+                    _receiveDamageResistance.AddChangeStat(id, changeType, value);
                     break;
             }
         }
@@ -64,6 +62,9 @@ namespace Game.GamePlayCore.Stats
                     break;
                 case StatsType.AttackSpeed :
                     _attackSpeed.RemoveChangeStat(id);
+                    break;
+                case StatsType.DamageResistance:
+                    _receiveDamageResistance.RemoveChangeStat(id);
                     break;
             }
         }

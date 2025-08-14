@@ -8,6 +8,7 @@ using VContainer.Unity;
 using System;
 using System.Collections.Generic;
 using Game.Abstractions.Ability;
+using Game.DataBase.Abilities;
 using Game.GamePlayCore.Systems.Units;
 using Game.GamePlayCore.Units;
 
@@ -42,7 +43,22 @@ namespace Game.GamePlayCore.Abilities
             _datas = new AbilityCore[count];
             for (int i=0; i<count; i++)
             {
-                _datas[i] = new AbilityCore(dataBase.AbilityDatas[i]);
+                _datas[i] = CreateAbilityFromData(dataBase.AbilityDatas[i]);
+                //_datas[i] = new AbilityCore(dataBase.AbilityDatas[i] , this);
+            }
+        }
+        
+        private AbilityCore CreateAbilityFromData(IAbilityData data)
+        {
+            switch (data.abilityType)
+            {
+                case AbilityType.Instant:
+                case AbilityType.LifeTime:
+                    return new AbilityCore(data, this);
+                case AbilityType.Tickable:
+                    return new AbilityTickable(data, this);
+                default:
+                    throw new ArgumentOutOfRangeException();
             }
         }
         
@@ -52,8 +68,8 @@ namespace Game.GamePlayCore.Abilities
             {
                 if (abilityCore.Id == id)
                 {
-                    var activatedAbility = new AbilityCore(abilityCore);
-                    activatedAbility.Activate(target, this);
+                    var activatedAbility = abilityCore.Clone(this);
+                    activatedAbility.Activate(target);
                     _abilities.Add(activatedAbility);
                 }
             }
@@ -69,7 +85,7 @@ namespace Game.GamePlayCore.Abilities
                 currentAbility.DoUpdate(deltaTime);
                 if (currentAbility.LifeTime < 0 || !currentAbility.IsActive)
                 {
-                    currentAbility.Deactivate(this);
+                    currentAbility.Deactivate();
                     _toRemove.Add(currentAbility);
                 }
             }

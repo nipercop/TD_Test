@@ -9,12 +9,14 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd5488657275a2a4e82e5e90c1d81230, type: 3}
-  m_Name: Ability With Life Time Data
+  m_Script: {fileID: 11500000, guid: 1463a84e5c7d24c44b9300be03bd368c, type: 3}
+  m_Name: Ability SlowDown Enemies per tick
   m_EditorClassIdentifier: 
-  _id: 0
-  _name: Increase Reload Speed
+  _id: 3
+  _name: SlowDown Enemies
   _coolDown: 0
   _logics:
-  - {fileID: 11400000, guid: 3f2cb765cb6d14c419c9f491723a768f, type: 2}
-  _duration: 20
+  - {fileID: 11400000, guid: d42192238a059f0429665897f0d56eca, type: 2}
+  _duration: 10
+  _tickTime: 1
+  _maxStacks: 5

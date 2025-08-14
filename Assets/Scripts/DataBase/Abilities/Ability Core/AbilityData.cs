@@ -14,7 +14,10 @@ namespace Game.DataBase.Abilities
         public int Id => _id;
         public string Name => _name;
         public virtual float Duration => 0;
+        public virtual float TickTime => 0;
+        public virtual int MaxStacks => 1;
         public float CoolDown => _coolDown;
         public AbilityLogicCore[] Logics => _logics;
+        public virtual AbilityType abilityType => AbilityType.Instant;
     }
 }

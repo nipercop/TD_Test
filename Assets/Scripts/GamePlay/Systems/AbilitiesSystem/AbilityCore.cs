@@ -13,29 +13,37 @@ namespace Game.GamePlayCore.Abilities
         protected float lifeTime;
         protected bool _isActive;
         protected AbilityLogicCore[] logics;
+        protected readonly IAbilitiesSystemProvider abilitiesProvider;
         
         public float LifeTime => lifeTime;
         public bool IsActive => _isActive;
         
 
-        public AbilityCore(IAbilityData  data)
+        public AbilityCore(IAbilityData  data, IAbilitiesSystemProvider  abilitiesProvider)
         {
             Id = data.Id;
             Name = data.Name;
             lifeTime = data.Duration;
             logics = data.Logics;
+            this.abilitiesProvider = abilitiesProvider;
         }
 
-        public AbilityCore(AbilityCore original)
+        public AbilityCore(AbilityCore original, IAbilitiesSystemProvider  abilitiesProvider)
         {
             Id = original.Id;
             Name = original.Name;
             lifeTime = original.lifeTime;
             _isActive = true;
             logics = original.logics;
+            this.abilitiesProvider = abilitiesProvider;
+        }
+        
+        public virtual AbilityCore Clone(IAbilitiesSystemProvider provider)
+        {
+            return new AbilityCore(this, provider);
         }
 
-        public virtual void Activate(DamagableUnit  target, IAbilitiesSystemProvider  abilitiesProvider)
+        public virtual void Activate(DamagableUnit  target)
         {
             _unit = target;
             _isActive = true;
@@ -45,7 +53,7 @@ namespace Game.GamePlayCore.Abilities
             }
         }
 
-        public virtual void Deactivate(IAbilitiesSystemProvider  abilitiesProvider)
+        public virtual void Deactivate()
         {
             if (_unit != null)
             {
@@ -64,11 +72,7 @@ namespace Game.GamePlayCore.Abilities
             lifeTime -= deltaTime;
             if (_isActive && lifeTime > 0)
             {
-                if (_unit != null)
-                {
-                    
-                }
-                else
+                if (_unit == null)
                 {
                     _isActive = false;
                 }
@@ -79,6 +83,7 @@ namespace Game.GamePlayCore.Abilities
         {
             Name = null;
             _unit = null;
+            logics = null;
         }
     }
 }
