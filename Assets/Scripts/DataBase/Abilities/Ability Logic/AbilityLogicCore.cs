@@ -1,10 +1,13 @@
+using Game.Abstractions.Ability;
 using UnityEngine;
 
 namespace Game.DataBase.Abilities.Logic
 {
-    public abstract class AbilityLogicCore
+    public abstract class AbilityLogicCore : ScriptableObject
     {
-        public virtual void Execute(){}
-        public virtual void DoUpdate(float deltaTime){}
+        public abstract void Activate(int abilityId, IAbilityTarget target, IAbilitiesSystemProvider  abilitiesProvider);
+        public virtual void Deactivate(int abilityId, IAbilityTarget target, IAbilitiesSystemProvider abilitiesProvider) { }
+        public virtual void Activate(int abilityId, int stack, IAbilityTarget target, IAbilitiesSystemProvider abilitiesProvider) { }
+        public virtual void DoUpdate(float deltaTime) { }
     }
 }

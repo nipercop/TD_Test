@@ -1,7 +1,7 @@
+using Game.Abstractions.Ability;
 using Game.DataBase.Abilities;
 using Game.DataBase.Abilities.Logic;
 using Game.GamePlayCore.Units;
-using UnityEngine;
 
 namespace Game.GamePlayCore.Abilities
 {
@@ -12,42 +12,55 @@ namespace Game.GamePlayCore.Abilities
         protected DamagableUnit _unit;
         protected float lifeTime;
         protected bool _isActive;
-        protected AbilityChangeStats [] statsToChange;
+        protected AbilityLogicCore[] logics;
+        protected readonly IAbilitiesSystemProvider abilitiesProvider;
         
         public float LifeTime => lifeTime;
         public bool IsActive => _isActive;
         
 
-        public AbilityCore(AbilityData  data)
+        public AbilityCore(IAbilityData  data, IAbilitiesSystemProvider  abilitiesProvider)
         {
             Id = data.Id;
             Name = data.Name;
-            lifeTime = data.LifeTime;
-            statsToChange = data.StatsToChange;
+            lifeTime = data.Duration;
+            logics = data.Logics;
+            this.abilitiesProvider = abilitiesProvider;
         }
 
-        public AbilityCore(AbilityCore original, DamagableUnit target)
+        public AbilityCore(AbilityCore original, IAbilitiesSystemProvider  abilitiesProvider)
         {
             Id = original.Id;
             Name = original.Name;
             lifeTime = original.lifeTime;
-            _unit = target;
-            statsToChange = original.statsToChange;
             _isActive = true;
+            logics = original.logics;
+            this.abilitiesProvider = abilitiesProvider;
+        }
+        
+        public virtual AbilityCore Clone(IAbilitiesSystemProvider provider)
+        {
+            return new AbilityCore(this, provider);
         }
 
         public virtual void Activate(DamagableUnit  target)
         {
             _unit = target;
             _isActive = true;
-            _unit.IncreaseStats(Id, statsToChange);
+            foreach (var logic in logics)
+            {
+                logic.Activate(Id, _unit, abilitiesProvider);
+            }
         }
 
         public virtual void Deactivate()
         {
             if (_unit != null)
             {
-                _unit.DecreaseStats(Id, statsToChange);
+                foreach (var logic in logics)
+                {
+                    logic.Deactivate(Id, _unit, abilitiesProvider);
+                }
             }
             _unit = null;
             _isActive = false;
@@ -59,11 +72,7 @@ namespace Game.GamePlayCore.Abilities
             lifeTime -= deltaTime;
             if (_isActive && lifeTime > 0)
             {
-                if (_unit != null)
-                {
-                    
-                }
-                else
+                if (_unit == null)
                 {
                     _isActive = false;
                 }
@@ -74,6 +83,7 @@ namespace Game.GamePlayCore.Abilities
         {
             Name = null;
             _unit = null;
+            logics = null;
         }
     }
 }

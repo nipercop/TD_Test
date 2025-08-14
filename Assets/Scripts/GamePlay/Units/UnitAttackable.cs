@@ -1,3 +1,4 @@
+using Game.Abstractions.Ability;
 using Game.GamePlayCore.Interfaces.Units;
 using Game.GamePlayCore.Systems.Units;
 using Game.GamePlayCore.Units.Logic.Attack;
@@ -11,8 +12,8 @@ namespace Game.GamePlayCore.Units
         
         public UnitsSystem  UnitsSystem => _unitsSystem;
         public Transform UnitTransform => transform;
+        public override UnitType UnitType => UnitType.PlayerUnit;
         
-
         public override void DoUpdate(float deltaTime)
         {
             base.DoUpdate(deltaTime);

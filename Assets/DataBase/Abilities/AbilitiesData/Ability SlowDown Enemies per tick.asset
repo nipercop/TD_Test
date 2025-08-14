@@ -1,0 +1,22 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1463a84e5c7d24c44b9300be03bd368c, type: 3}
+  m_Name: Ability SlowDown Enemies per tick
+  m_EditorClassIdentifier: 
+  _id: 3
+  _name: SlowDown Enemies
+  _coolDown: 0
+  _logics:
+  - {fileID: 11400000, guid: d42192238a059f0429665897f0d56eca, type: 2}
+  _duration: 10
+  _tickTime: 1
+  _maxStacks: 5
