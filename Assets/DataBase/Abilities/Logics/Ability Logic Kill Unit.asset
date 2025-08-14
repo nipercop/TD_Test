@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ac4e9fc947e82fa4e869a0db3684f270, type: 3}
   m_Name: Ability Logic Kill Unit
   m_EditorClassIdentifier: 
-  Id: 0
+  _targets: 3
