@@ -26,6 +26,7 @@ namespace Game.GamePlayCore.Units
 
         public int Faction => _faction;
         public Vector3 Position => transform.position;
+        public virtual UnitType UnitType => UnitType.None;
 
         protected virtual void Start()
         {

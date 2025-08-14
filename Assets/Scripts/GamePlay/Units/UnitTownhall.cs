@@ -1,3 +1,4 @@
+using Game.Abstractions.Ability;
 using Game.GamePlayCore.Systems.GamePlayState;
 using Game.GamePlayCore.Systems.StateMachine;
 using UnityEngine;
@@ -8,6 +9,7 @@ namespace Game.GamePlayCore.Units
     public class UnitTownhall : DamagableUnit
     {
         [Inject] private GamePlayStateSystem _gamePlayStateSystem;
+        public override UnitType UnitType => UnitType.Townhall;
 
         public override void Die()
         {

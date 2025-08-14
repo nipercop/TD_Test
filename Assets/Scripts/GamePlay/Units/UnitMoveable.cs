@@ -1,3 +1,4 @@
+using Game.Abstractions.Ability;
 using Game.GamePlayCore.Interfaces.Units.Logic.Move;
 using Game.GamePlayCore.Systems.Spawners.Data;
 using Game.GamePlayCore.Units.Logic.Attack;
@@ -11,6 +12,7 @@ namespace Game.GamePlayCore.Units
         private IMoveLogic _moveLogic = new SimpleMove();
         [SerializeField] private SimpleAttackMelee _simpleAttackMelee;
         private DamagableUnit _targetToMove;
+        public override UnitType UnitType => UnitType.EnemyUnit;
 
         public override void SetSpawnData(SpawnData spawnData)
         {

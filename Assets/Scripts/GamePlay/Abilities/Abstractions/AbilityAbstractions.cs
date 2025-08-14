@@ -44,6 +44,16 @@ namespace Game.Abstractions.Ability
         DamageResistance = 4
     }
 
+    
+    [System.Flags]
+    public enum UnitType
+    {
+        None = 0,
+        EnemyUnit = 1 << 0,
+        PlayerUnit = 1 << 1,
+        Townhall = 1 << 2
+    }
+
     public interface IAbilityTarget
     {
         IStatsUnit Stats { get; set; }
@@ -51,6 +61,7 @@ namespace Game.Abstractions.Ability
         void TakeDamage(int damage);
         int Faction { get; }
         Vector3 Position { get; }
+        UnitType UnitType { get; }
     }
 
     public interface IAbilitiesSystemProvider
