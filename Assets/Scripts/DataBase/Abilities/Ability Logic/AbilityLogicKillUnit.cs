@@ -8,7 +8,9 @@ namespace Game.DataBase.Abilities.Logic
     {
         public override void Activate(int abilityId,IAbilityTarget target, IAbilitiesSystemProvider  abilitiesProvider)
         {
-            target.Die();
+            float resultDamage = target.Stats.Health / (1f - target.Stats.ReceiveDamageResistance);
+            target.TakeDamage(Mathf.CeilToInt(resultDamage));
+            //target.Die(); // this can avoid immortality ability
         }
     }
 }
