@@ -46,7 +46,7 @@ namespace Game.ECS.Systems
                 {
                     attackCooldown.ValueRW.Value = towerData.ValueRO.AttackTime;
                     var projectileEntity = ecb.Instantiate(towerData.ValueRO.ProjectilePrefab);
-                    ecb.SetComponent(projectileEntity, LocalTransform.FromPosition(towerPos));
+                    ecb.SetComponent(projectileEntity, LocalTransform.FromPositionRotationScale(towerPos, quaternion.identity, .3f));
                     ecb.SetComponent(projectileEntity, new DamageData()
                     {
                         Value = towerData.ValueRO.Damage

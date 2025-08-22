@@ -19,7 +19,8 @@ namespace Game.ECS.Systems
             
             foreach (var (projectileData, moveSpeed, 
                          transform , damage, entity) 
-                     in SystemAPI.Query<RefRW<ProjectileTargetData>,RefRW<MoveSpeedData>, RefRW<LocalTransform>, RefRO<DamageData>>().WithEntityAccess())
+                     in SystemAPI.Query<RefRW<ProjectileTargetData>,RefRW<MoveSpeedData>,
+                         RefRW<LocalTransform>, RefRO<DamageData>>().WithEntityAccess())
             {
                 
                 var targetEntity = projectileData.ValueRO.Target;
