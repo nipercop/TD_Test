@@ -1,6 +1,4 @@
 using Unity.Entities;
-using UnityEngine;
-
 
 namespace Game.ECS.Data.Ability
 {

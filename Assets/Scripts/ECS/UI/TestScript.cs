@@ -1,4 +1,4 @@
-using Game.ECS.Systems.Abilities.Requests;
+using Game.ECS.Data.Abilities.Requests;
 using Unity.Entities;
 using UnityEngine;
 
@@ -27,6 +27,21 @@ public class TestScript : MonoBehaviour
         {
             Radius = 7,
             Damage = 50
+        });
+    }
+    
+    public void OnClickSlowDownEnemies()
+    {
+        var world = World.DefaultGameObjectInjectionWorld;
+        var em = world.EntityManager;
+
+        var request = em.CreateEntity();
+        em.AddComponentData(request, new SlowDownEnemiesRequest()
+        {
+            Duration = 10,
+            MoveSpeedDecreaser = .1f,
+            TickRate = 1f,
+            MaxStacks = 5
         });
     }
 }

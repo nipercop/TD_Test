@@ -1,14 +1,13 @@
 using Game.ECS.Data;
-using Game.ECS.Data.Ability;
 using Game.ECS.Data.Health;
-using Game.ECS.Systems.Abilities.Requests;
+using Game.ECS.Data.Abilities.Requests;
 using Unity.Burst;
 using Unity.Collections;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
 
-namespace Game.ECS.Systems
+namespace Game.ECS.Systems.Abilities.Injector
 {
     [BurstCompile]
     public partial struct KamikadzeAbilitySystem : ISystem

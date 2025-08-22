@@ -1,5 +1,5 @@
 using Unity.Entities;
-namespace Game.ECS.Systems.Abilities.Requests
+namespace Game.ECS.Data.Abilities.Requests
 {
     public struct KamikadzeAbilityRequest : IComponentData
     {

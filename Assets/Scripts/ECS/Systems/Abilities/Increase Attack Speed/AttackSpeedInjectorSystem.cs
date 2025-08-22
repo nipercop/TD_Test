@@ -1,6 +1,6 @@
 using Game.ECS.Data;
 using Game.ECS.Data.Ability;
-using Game.ECS.Systems.Abilities.Requests;
+using Game.ECS.Data.Abilities.Requests;
 using Unity.Burst;
 using Unity.Entities;
 
