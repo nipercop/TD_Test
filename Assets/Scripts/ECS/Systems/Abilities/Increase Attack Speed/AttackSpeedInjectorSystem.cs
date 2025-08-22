@@ -9,6 +9,11 @@ namespace Game.ECS.Systems.Abilities.Injector
     [BurstCompile]
     public partial struct AttackSpeedInjectorSystem : ISystem
     {
+        public void OnCreate(ref SystemState state)
+        {
+            state.RequireForUpdate<AttackSpeedAbilityRequest>();
+        }
+
         public void OnUpdate(ref SystemState state)
         {
             var ecb = new EntityCommandBuffer(Unity.Collections.Allocator.Temp);
