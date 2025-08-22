@@ -45,7 +45,7 @@ namespace Game.UI.Abilities.View
 
         private void OnDestroy()
         {
-            _presenter.Dispose();
+            _presenter?.Dispose();
         }
 
         void Update()
