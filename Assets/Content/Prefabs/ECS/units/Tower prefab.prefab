@@ -99,7 +99,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14bb1d01e87c95c45a92a1dc38f79c7e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Range: 5
+  Range: 15
   AttackTime: 1
   Damage: 10
   ProjectilePrefab: {fileID: 8467625596334925471, guid: 3f58eacc047dfc2448116fd92ac98ea0, type: 3}

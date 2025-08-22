@@ -34,7 +34,7 @@ namespace Game.ECS.Systems
                 foreach (var (targetTransform, enemyData, targetEntity) in SystemAPI.Query<RefRO<LocalTransform>, RefRO<EnemyTag>>().WithEntityAccess())
                 {
                     float distance = math.distancesq(towerPos, targetTransform.ValueRO.Position);
-                    if (distance < closestDistance)
+                    if (distance < closestDistance && towerData.ValueRO.Range > distance)
                     {
                         closestDistance = distance;
                         target = targetEntity;
