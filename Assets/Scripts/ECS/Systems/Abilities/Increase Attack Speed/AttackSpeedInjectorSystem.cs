@@ -1,11 +1,12 @@
 using Game.ECS.Data;
 using Game.ECS.Data.Ability;
 using Game.ECS.Systems.Abilities.Requests;
+using Unity.Burst;
 using Unity.Entities;
 
 namespace Game.ECS.Systems.Abilities.Injector
 {
-    
+    [BurstCompile]
     public partial struct AttackSpeedInjectorSystem : ISystem
     {
         public void OnUpdate(ref SystemState state)
