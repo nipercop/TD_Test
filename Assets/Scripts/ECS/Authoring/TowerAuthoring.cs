@@ -25,7 +25,8 @@ namespace Game.ECS.Authoring
                 });
                 AddComponent(entity, new AttackCooldownData
                 {
-                    Value = authoring.AttackTime
+                    Value = authoring.AttackTime,
+                    Speed = 1
                 });
             }
         }

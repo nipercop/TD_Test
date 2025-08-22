@@ -6,5 +6,6 @@ namespace Game.ECS.Data
     public struct AttackCooldownData : IComponentData
     {
         public float Value;
+        public float Speed;
     }
 }

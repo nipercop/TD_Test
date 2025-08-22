@@ -3,6 +3,7 @@ using Game.ECS.Data.Damage;
 using Game.ECS.Data.Move;
 using Game.ECS.Data.Projectile;
 using Unity.Burst;
+using Unity.Collections;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
@@ -14,12 +15,12 @@ namespace Game.ECS.Systems
     {
         public void OnUpdate(ref SystemState state)
         {
-            var ecb = new EntityCommandBuffer(Unity.Collections.Allocator.Temp);
+            var ecb = new EntityCommandBuffer(Allocator.Temp);
             float deltaTime = SystemAPI.Time.DeltaTime;
             foreach (var (towerData , attackCooldown,towerTransform, entity) 
                      in SystemAPI.Query<RefRO<TowerData>, RefRW<AttackCooldownData>, RefRO<LocalTransform>>().WithEntityAccess())
             {
-                attackCooldown.ValueRW.Value -= deltaTime;
+                attackCooldown.ValueRW.Value -= attackCooldown.ValueRO.Speed * deltaTime;
                 if (attackCooldown.ValueRO.Value > 0)
                 {
                     continue;

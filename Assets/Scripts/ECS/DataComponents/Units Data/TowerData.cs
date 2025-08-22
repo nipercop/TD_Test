@@ -8,6 +8,5 @@ namespace Game.ECS.Data
         public float AttackTime;
         public int Damage;
         public Entity ProjectilePrefab;
-
     }
 }
