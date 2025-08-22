@@ -13,7 +13,7 @@ namespace Game.ECS.Authoring
         {
             public override void Bake(TownhallAuthoring authoring)
             {
-                var entity = GetEntity(TransformUsageFlags.WorldSpace);
+                var entity = GetEntity(TransformUsageFlags.Dynamic);
                 AddComponent(entity, new HealthData()
                 {
                     Value = authoring.Health
