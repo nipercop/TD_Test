@@ -1,7 +1,7 @@
 using Game.ECS.Data;
 using Game.ECS.Data.Damage;
 using Game.ECS.Data.Move;
-using UnityEngine;
+using Game.ECS.Data.Projectile;
 using Unity.Burst;
 using Unity.Entities;
 using Unity.Mathematics;
@@ -9,6 +9,7 @@ using Unity.Transforms;
 
 namespace Game.ECS.Systems
 {
+    [BurstCompile]
     public partial struct TowerAttackSystem : ISystem
     {
         public void OnUpdate(ref SystemState state)
@@ -30,7 +31,7 @@ namespace Game.ECS.Systems
                 float closestDistance = float.MaxValue;
                 float3 targetpos = float3.zero;
 
-                foreach (var (targetTransform, enemyData, targetEntity) in SystemAPI.Query<RefRO<LocalTransform>, RefRO<EnemyData>>().WithEntityAccess())
+                foreach (var (targetTransform, enemyData, targetEntity) in SystemAPI.Query<RefRO<LocalTransform>, RefRO<EnemyTag>>().WithEntityAccess())
                 {
                     float distance = math.distancesq(towerPos, targetTransform.ValueRO.Position);
                     if (distance < closestDistance)
@@ -50,9 +51,10 @@ namespace Game.ECS.Systems
                     {
                         Value = towerData.ValueRO.Damage
                     });
-                    ecb.AddComponent(projectileEntity, new MoveToTargetData()
+                    ecb.AddComponent(projectileEntity, new ProjectileTargetData()
                     {
-                        Target = target
+                        Target = target,
+                        LastTargetPosition = targetpos
                     });     
                 }
             }

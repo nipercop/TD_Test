@@ -1,3 +1,4 @@
+using Game.ECS.Data;
 using Game.ECS.Data.Damage;
 using Game.ECS.Data.Health;
 using Game.ECS.Data.Move;
@@ -18,7 +19,8 @@ namespace Game.ECS.Systems.Move
             var ecb = new EntityCommandBuffer(Unity.Collections.Allocator.Temp);
             
             foreach (var (target,moveSpeed, transform , damage, entity) 
-                     in SystemAPI.Query<RefRO<MoveToTargetData>,RefRW<MoveSpeedData>, RefRW<LocalTransform>, RefRO<DamageData>>().WithEntityAccess())
+                     in SystemAPI.Query<RefRO<MoveToTargetData>,RefRW<MoveSpeedData>, 
+                         RefRW<LocalTransform>, RefRO<DamageData>>().WithEntityAccess().WithAll<EnemyTag>())
             {
                 var targetEntity = target.ValueRO.Target;
                 if (SystemAPI.Exists(targetEntity))

@@ -1,5 +1,7 @@
+using Game.ECS.Data;
 using Game.ECS.Data.Damage;
 using Game.ECS.Data.Move;
+using Game.ECS.Data.Projectile;
 using Unity.Entities;
 using Unity.Transforms;
 using UnityEngine;
@@ -23,7 +25,6 @@ namespace Game.ECS.Authoring.Projectile
                 {
                     Value = authoring.MoveSpeed
                 });
-                //AddComponent(entity, new LocalTransform());
             }
         }
     }

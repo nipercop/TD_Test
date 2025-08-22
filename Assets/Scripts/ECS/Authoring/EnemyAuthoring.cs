@@ -18,10 +18,7 @@ namespace Game.ECS.Authoring.Enemy
             public override void Bake(EnemyAuthoring authoring)
             {
                 var entity = GetEntity(TransformUsageFlags.WorldSpace);
-                AddComponent(entity, new EnemyData()
-                {
-                    Health = authoring.Health,
-                });
+                AddComponent(entity, new EnemyTag());
                 AddComponent(entity, new HealthData()
                 {
                     Value = authoring.Health
