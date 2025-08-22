@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3717926507621784919}
   - component: {fileID: 2383729998948507378}
   - component: {fileID: 394586057103792304}
+  - component: {fileID: -5852762829929003488}
   m_Layer: 0
   m_Name: Enemy prefab
   m_TagString: Untagged
@@ -86,3 +87,17 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &-5852762829929003488
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 882656019672448416}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c2641813775d3884cb2b9f833efebf37, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 10
+  MoveSpeed: 3

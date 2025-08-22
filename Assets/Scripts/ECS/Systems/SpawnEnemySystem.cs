@@ -1,4 +1,5 @@
-using Game.ECS.Data;
+using Game.ECS.Data.Move;
+using Game.ECS.Data.Spawn;
 using UnityEngine;
 using Unity.Burst;
 using Unity.Collections;
@@ -33,6 +34,10 @@ namespace Game.ECS.Systems
             for (int i = 0; i < spawnData.CountToSpawn; i++)
             {
                 var enemy = ecb.Instantiate(spawnData.EnemyPrefab);
+                ecb.SetComponent(enemy, new MoveToTargetData()
+                {
+                    Target = spawnData.Target
+                });
                 float3 offset = new float3(UnityEngine.Random.Range(-1f, 1f), 0, UnityEngine.Random.Range(-1f, 1f));
                 ecb.SetComponent(enemy, LocalTransform.FromPosition(spawnData.Position + offset));
             }
