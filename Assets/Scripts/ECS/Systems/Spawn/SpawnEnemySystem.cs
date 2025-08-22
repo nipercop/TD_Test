@@ -1,3 +1,4 @@
+using System;
 using Game.ECS.Data.Move;
 using Game.ECS.Data.Spawn;
 using UnityEngine;
@@ -22,13 +23,13 @@ namespace Game.ECS.Systems
         public void OnUpdate(ref SystemState state)
         {
             var spawnData = SystemAPI.GetSingleton<EnemySpawnData>();
-            
-            _timer -= SystemAPI.Time.DeltaTime;
-            if (_timer > 0)
+
+            if (spawnData.StartSpawn == 0)
             {
                 return;
             }
-            _timer = spawnData.TimeToSpawn;
+            spawnData.StartSpawn = 0;
+            SystemAPI.SetSingleton(spawnData);
             
             var ecb = new EntityCommandBuffer(Allocator.Temp);
             for (int i = 0; i < spawnData.CountToSpawn; i++)

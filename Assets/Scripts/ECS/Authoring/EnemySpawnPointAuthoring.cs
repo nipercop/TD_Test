@@ -24,7 +24,8 @@ namespace Game.ECS.Authoring.Spawn
                     TimeToSpawn = authoring.TimeToSpawn,
                     Position = (float3)authoring.transform.position,
                     EnemyPrefab =  GetEntity(authoring.EnemyPrefab, TransformUsageFlags.Dynamic),
-                    Target = GetEntity(authoring.Target, TransformUsageFlags.Dynamic)
+                    Target = GetEntity(authoring.Target, TransformUsageFlags.Dynamic),
+                    StartSpawn = 1
                 });
             }
         }

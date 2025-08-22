@@ -10,5 +10,6 @@ namespace Game.ECS.Data.Spawn
         public float TimeToSpawn;
         public float3 Position;
         public Entity Target;
+        public int StartSpawn;
     }
 }
