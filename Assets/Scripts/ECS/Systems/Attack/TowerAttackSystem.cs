@@ -1,11 +1,62 @@
+using Game.ECS.Data;
+using Game.ECS.Data.Damage;
+using Game.ECS.Data.Move;
 using UnityEngine;
 using Unity.Burst;
 using Unity.Entities;
+using Unity.Mathematics;
+using Unity.Transforms;
 
 namespace Game.ECS.Systems
 {
     public partial struct TowerAttackSystem : ISystem
     {
-        
+        public void OnUpdate(ref SystemState state)
+        {
+            var ecb = new EntityCommandBuffer(Unity.Collections.Allocator.Temp);
+            float deltaTime = SystemAPI.Time.DeltaTime;
+            foreach (var (towerData , attackCooldown,towerTransform, entity) 
+                     in SystemAPI.Query<RefRO<TowerData>, RefRW<AttackCooldownData>, RefRO<LocalTransform>>().WithEntityAccess())
+            {
+                attackCooldown.ValueRW.Value -= deltaTime;
+                if (attackCooldown.ValueRO.Value > 0)
+                {
+                    continue;
+                }
+                
+                float3 towerPos = towerTransform.ValueRO.Position;
+                
+                Entity target = Entity.Null;
+                float closestDistance = float.MaxValue;
+                float3 targetpos = float3.zero;
+
+                foreach (var (targetTransform, enemyData, targetEntity) in SystemAPI.Query<RefRO<LocalTransform>, RefRO<EnemyData>>().WithEntityAccess())
+                {
+                    float distance = math.distancesq(towerPos, targetTransform.ValueRO.Position);
+                    if (distance < closestDistance)
+                    {
+                        closestDistance = distance;
+                        target = targetEntity;
+                        targetpos =  targetTransform.ValueRO.Position;
+                    }
+                }
+                
+                if (target != Entity.Null)
+                {
+                    attackCooldown.ValueRW.Value = towerData.ValueRO.AttackTime;
+                    var projectileEntity = ecb.Instantiate(towerData.ValueRO.ProjectilePrefab);
+                    ecb.SetComponent(projectileEntity, LocalTransform.FromPosition(towerPos));
+                    ecb.SetComponent(projectileEntity, new DamageData()
+                    {
+                        Value = towerData.ValueRO.Damage
+                    });
+                    ecb.AddComponent(projectileEntity, new MoveToTargetData()
+                    {
+                        Target = target
+                    });     
+                }
+            }
+            ecb.Playback(state.EntityManager);
+        }
     }
 }

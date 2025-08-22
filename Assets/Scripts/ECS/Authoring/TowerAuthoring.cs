@@ -15,13 +15,17 @@ namespace Game.ECS.Authoring
         {
             public override void Bake(TowerAuthoring authoring)
             {
-                var entity = GetEntity(TransformUsageFlags.WorldSpace);
+                var entity = GetEntity(TransformUsageFlags.Dynamic);
                 AddComponent(entity, new TowerData()
                 {
                     Range = authoring.Range,
                     AttackTime = authoring.AttackTime,
                     Damage = authoring.Damage,
                     ProjectilePrefab = GetEntity( authoring.ProjectilePrefab , TransformUsageFlags.Dynamic)
+                });
+                AddComponent(entity, new AttackCooldownData
+                {
+                    Value = authoring.AttackTime
                 });
             }
         }

@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace Game.ECS.Data
 {
-    public struct AttackSpeedData : IComponentData
+    public struct AttackCooldownData : IComponentData
     {
         public float Value;
     }
