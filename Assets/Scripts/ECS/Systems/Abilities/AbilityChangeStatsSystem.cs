@@ -13,6 +13,7 @@ namespace Game.ECS.Systems
         public void OnUpdate(ref SystemState state)
         {
             float deltaTime = SystemAPI.Time.DeltaTime;
+            
             var ecb = new EntityCommandBuffer(Allocator.Temp);
             foreach (var (abilityLifeTimeData, attackCooldown, entity) 
                      in SystemAPI.Query<RefRW<AbilityLifeTimeData>, RefRW<AttackCooldownData>>().WithEntityAccess())
