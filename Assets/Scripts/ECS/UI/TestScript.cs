@@ -49,12 +49,14 @@ public class TestScript : MonoBehaviour
         var em = world.EntityManager;
 
         var request = em.CreateEntity();
-        em.AddComponentData(request, new SlowDownEnemiesRequest()
+        em.AddComponentData(request, new AbilityRequest());
+        var buffer = em.AddBuffer<AbilityElementData>(request);
+        buffer.Add(new AbilityElementData()
         {
-            Duration = 10,
-            MoveSpeedDecreaser = .1f,
-            TickRate = 1f,
-            MaxStacks = 5
+            Type = AbilityType.MoveSpeed ,
+            Value = .5f,
+            Duration = 10 
         });
+        
     }
 }

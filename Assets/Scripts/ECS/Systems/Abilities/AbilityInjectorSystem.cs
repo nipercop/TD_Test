@@ -1,13 +1,13 @@
 using ECS.Systems.Abilities;
-using ECS.Systems.Abilities.Enums;
-using Game.ECS.Data;
-using Game.ECS.Data.Ability;
 using Game.ECS.Data.Abilities.Requests;
+using Game.ECS.Data.Abilities.Tags;
+using Game.ECS.Data.Health;
 using Unity.Burst;
 using Unity.Entities;
 
 namespace Game.ECS.Systems.Abilities.Injector
 {
+    [BurstCompile]
     public partial struct AbilityInjectorSystem : ISystem
     {
         public void OnCreate(ref SystemState state)
@@ -22,10 +22,10 @@ namespace Game.ECS.Systems.Abilities.Injector
             foreach (var (request, reqEntity)
                      in SystemAPI.Query<RefRO<AbilityRequest>>().WithEntityAccess())
             {
-                foreach (var (tower, entity)
-                         in SystemAPI.Query<RefRW<TowerData>>().WithEntityAccess())
+                var buffer =  SystemAPI.GetBuffer<AbilityElementData>(reqEntity);
+                foreach (var (healthData, entity)
+                         in SystemAPI.Query<RefRO<HealthData>>().WithAll<AbilityTag>().WithEntityAccess())
                 {
-                    var buffer =  SystemAPI.GetBuffer<AbilityElementData>(reqEntity);
                     var buffer2 = SystemAPI.GetBuffer<AbilityElementData>(entity);
                     for (int i = 0; i < buffer.Length; i++)
                     {
