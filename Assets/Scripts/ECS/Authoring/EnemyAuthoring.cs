@@ -1,4 +1,6 @@
+using ECS.Systems.Abilities;
 using Game.ECS.Data;
+using Game.ECS.Data.Abilities.Tags;
 using Game.ECS.Data.Damage;
 using Game.ECS.Data.Health;
 using Game.ECS.Data.Move;
@@ -25,13 +27,16 @@ namespace Game.ECS.Authoring.Enemy
                 });
                 AddComponent(entity, new MoveSpeedData()
                 {
-                    Value =  authoring.MoveSpeed
+                    Value =  authoring.MoveSpeed,
+                    Multiplicator = 1
                 });
                 AddComponent(entity, new DamageData()
                 {
                     Value = authoring.Damage
                 });
                 AddComponent(entity, new MoveToTargetData());
+                // AddComponent(entity, new AbilityTag());
+                // AddBuffer<AbilityElementData>(entity);
             }
         }
     }

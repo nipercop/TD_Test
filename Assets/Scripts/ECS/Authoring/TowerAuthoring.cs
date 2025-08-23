@@ -1,4 +1,7 @@
+using ECS.Systems.Abilities;
 using Game.ECS.Data;
+using Game.ECS.Data.Abilities.Tags;
+using Game.ECS.Data.Health;
 using Unity.Entities;
 using UnityEngine;
 
@@ -28,6 +31,12 @@ namespace Game.ECS.Authoring
                     Value = authoring.AttackTime,
                     Speed = 1
                 });
+                AddComponent(entity, new HealthData()
+                {
+                    Value =  50
+                });
+                AddComponent(entity, new AbilityTag());
+                AddBuffer<AbilityElementData>(entity);
             }
         }
     }

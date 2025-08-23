@@ -1,4 +1,8 @@
+using ECS.Systems.Abilities;
+using ECS.Systems.Abilities.Enums;
+using Game.ECS.Data;
 using Game.ECS.Data.Abilities.Requests;
+using Unity.Collections;
 using Unity.Entities;
 using UnityEngine;
 
@@ -10,11 +14,16 @@ public class TestScript : MonoBehaviour
         var em = world.EntityManager;
 
         var request = em.CreateEntity();
-        em.AddComponentData(request, new AttackSpeedAbilityRequest()
+        em.AddComponentData(request, new AbilityRequest());
+        var buffer = em.AddBuffer<AbilityElementData>(request);
+        buffer.Add(new AbilityElementData()
         {
-            Duration = 10,
-            Multiplier = 3
+            Type = AbilityType.AttackSpeed ,
+            Value = 3,
+            Duration = 10
         });
+        
+        //надо реализовать базу данных
     }
     
     public void OnClickKamikadze()
@@ -23,11 +32,15 @@ public class TestScript : MonoBehaviour
         var em = world.EntityManager;
 
         var request = em.CreateEntity();
-        em.AddComponentData(request, new KamikadzeAbilityRequest()
+        em.AddComponentData(request, new AbilityRequest());
+        var buffer = em.AddBuffer<AbilityElementData>(request);
+        buffer.Add(new AbilityElementData()
         {
-            Radius = 7,
-            Damage = 50
+            Type = AbilityType.Damage ,
+            Value = 15,
+            Duration = 30
         });
+        
     }
     
     public void OnClickSlowDownEnemies()

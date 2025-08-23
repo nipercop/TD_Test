@@ -1,6 +1,9 @@
+using ECS.Systems.Abilities;
+using ECS.Systems.Abilities.Enums;
 using Game.ECS.Data;
 using Game.ECS.Data.Health;
 using Game.ECS.Data.Abilities.Requests;
+using Game.ECS.Data.Abilities.Tags;
 using Unity.Burst;
 using Unity.Collections;
 using Unity.Entities;
@@ -14,31 +17,31 @@ namespace Game.ECS.Systems.Abilities.Injector
     {
         public void OnUpdate(ref SystemState state)
         {
-            float deltaTime = SystemAPI.Time.DeltaTime;
-            var ecb = new EntityCommandBuffer(Allocator.Temp);
-
-            foreach (var (request, reqEntity)
-                     in SystemAPI.Query<RefRO<KamikadzeAbilityRequest>>().WithEntityAccess())
+            foreach (var (towerHealth, towerTransform, entity)
+                     in SystemAPI.Query<RefRW<HealthData>, RefRO<LocalTransform>>()
+                         .WithEntityAccess().WithAll<TowerData>())
             {
-                int damage = request.ValueRO.Damage;
-                float radius = math.pow(2, request.ValueRO.Radius);
-                foreach (var (towerData, towerTransform, entityTower) in SystemAPI.Query<RefRO<TowerData>, RefRO<LocalTransform>>().WithEntityAccess())
+                var buffer = SystemAPI.GetBuffer<AbilityElementData>(entity);
+                for (int i = buffer.Length - 1; i >= 0; i--)
                 {
-                    float3 towerPosition = towerTransform.ValueRO.Position;
-                    foreach (var (enemyHealth, enemyTranform) in SystemAPI.Query<RefRW<HealthData>, RefRO<LocalTransform>>().WithAll<EnemyTag>())
+                    var buff = buffer[i];
+                    if (buff.Type == AbilityType.Damage)
                     {
-                        float distance = math.lengthsq(towerPosition - enemyTranform.ValueRO.Position);
-                        if (distance < radius)
+                        towerHealth.ValueRW.Value -= towerHealth.ValueRO.Value;
+                        float3 towerPosition = towerTransform.ValueRO.Position;
+                        buffer.RemoveAt(i);
+                        foreach (var (enemyHealth, enemyTranform) 
+                                 in SystemAPI.Query<RefRW<HealthData>, RefRO<LocalTransform>>().WithAll<EnemyTag>())
                         {
-                            enemyHealth.ValueRW.Value -= damage;
+                            float distance = math.lengthsq(towerPosition - enemyTranform.ValueRO.Position);
+                            if (distance < buff.Value)
+                            {
+                                enemyHealth.ValueRW.Value -= (int)buff.Duration;
+                            }
                         }
                     }
-                    ecb.DestroyEntity(entityTower);
                 }
-                ecb.DestroyEntity(reqEntity);
             }
-
-            ecb.Playback(state.EntityManager);
         }
     }
 }

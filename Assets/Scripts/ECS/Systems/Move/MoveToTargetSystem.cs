@@ -2,6 +2,7 @@ using Game.ECS.Data;
 using Game.ECS.Data.Damage;
 using Game.ECS.Data.Health;
 using Game.ECS.Data.Move;
+using Game.ECS.Data.Spawn;
 using Unity.Burst;
 using Unity.Entities;
 using Unity.Mathematics;
@@ -28,7 +29,7 @@ namespace Game.ECS.Systems.Move
                     var targetTransform = SystemAPI.GetComponent<LocalTransform>(targetEntity);
                     float3 direction = targetTransform.Position - transform.ValueRO.Position;
                     float distance = math.length(direction);
-                    transform.ValueRW.Position += (direction / distance) * moveSpeed.ValueRO.Value * deltaTime;
+                    transform.ValueRW.Position += (direction / distance) * moveSpeed.ValueRO.Value * moveSpeed.ValueRO.Multiplicator * deltaTime;
                     
                     if (distance < 1f)
                     {

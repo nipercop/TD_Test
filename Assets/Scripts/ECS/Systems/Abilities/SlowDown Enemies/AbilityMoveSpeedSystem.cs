@@ -13,7 +13,7 @@ namespace Game.ECS.Systems
     {
 
         [BurstCompile]
-        public partial struct SlowDownEnemiesSystem : ISystem
+        public partial struct AbilityMoveSpeedSystem : ISystem
         {
 
             // потом доделать
