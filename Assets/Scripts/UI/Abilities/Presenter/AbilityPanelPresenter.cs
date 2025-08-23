@@ -1,9 +1,9 @@
 using System;
-using Game.GamePlayCore.Abilities;
-using Game.GamePlayCore.Interfaces.Abilities;
-using Game.GamePlayCore.Systems.Units;
+using Game.DataBase.Abilities;
 using Game.UI.Abilities.Model;
 using Game.UI.Abilities.View;
+using Unity.Entities;
+using UnityEngine;
 
 namespace Game.UI.Abilities.Presenter
 {
@@ -12,15 +12,12 @@ namespace Game.UI.Abilities.Presenter
         
         private AbilityPanelView _view;
         private readonly AbilityPanelModel _model;
-        private readonly IAbilitiesSystem _abilitiesSystem;
-        private readonly UnitsSystem  _unitsSystem;
+        private readonly AbilityDataBase _abilityDataBase;
 
-        public AbilityPanelPresenter(AbilityPanelModel model,  IAbilitiesSystem abilitiesSystem, UnitsSystem  unitsSystem)
+        public AbilityPanelPresenter(AbilityPanelModel model, AbilityDataBase  abilityDataBase)
         {
-            _unitsSystem = unitsSystem;
-            _abilitiesSystem = abilitiesSystem;
+            _abilityDataBase = abilityDataBase;   
             _model = model;
-            _model.OnAbilitiesLoaded += OnAbilitiesLoaded;
         }
 
         public void SetView(AbilityPanelView view)
@@ -28,32 +25,46 @@ namespace Game.UI.Abilities.Presenter
             _view = view;
         }
 
-        private void OnAbilitiesLoaded(AbilityCore[] abilities)
+        public void CreateAbilityButtons()
         {
-            foreach (var ability in abilities)
+            foreach (var abilityData in _abilityDataBase.AbilityDatas)
             {
-                _view.ShowAbility(ability);
+                _view.CreateAbilityButton(abilityData);
             }
         }
 
         public void OnAbilityClicked(int abilityId)
         {
-            int myFaction = abilityId != 3 ? 0 : 1; // TODO: temp code
-            var units = _unitsSystem.AllUnits;
-            foreach (var unit in units)
+            Debug.Log("Ability Clicked id " + abilityId);
+            foreach (var abilityData in _abilityDataBase.AbilityDatas)
             {
-                if (unit.Faction == myFaction)
+                if (abilityData.Id == abilityId)
                 {
-                    _abilitiesSystem.ActivateAbility(abilityId, unit);
+                    ExecuteAbility(abilityData);
                 }
             }
             _view.RemoveAbility(abilityId);
         }
 
+        private void ExecuteAbility(AbilityData ability)
+        {
+            var world = World.DefaultGameObjectInjectionWorld;
+            var em = world.EntityManager;
+
+            var request = em.CreateEntity();
+            // em.AddComponentData(request, new AbilityRequest());
+            // var buffer = em.AddBuffer<AbilityElementData>(request);
+            // buffer.Add(new AbilityElementData()
+            // {
+            //     Type = AbilityType.Damage ,
+            //     Value = 15,
+            //     Duration = 30
+            // });
+        }
+
         public void Dispose()
         {
             _view = null;
-            _model.OnAbilitiesLoaded -= OnAbilitiesLoaded;
         }
     }
 }

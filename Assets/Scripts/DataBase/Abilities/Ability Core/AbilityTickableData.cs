@@ -9,6 +9,5 @@ namespace Game.DataBase.Abilities
         [SerializeField] private int _maxStacks;
         public override float TickTime => _tickTime;
         public override int MaxStacks => _maxStacks;
-        public override AbilityType abilityType => AbilityType.Tickable;
     }
 }

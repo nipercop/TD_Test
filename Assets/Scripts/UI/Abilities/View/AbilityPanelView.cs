@@ -1,5 +1,5 @@
 using System.Collections.Generic;
-using Game.GamePlayCore.Abilities;
+using Game.DataBase.Abilities;
 using Game.UI.Abilities.Presenter;
 using UnityEngine;
 using VContainer;
@@ -9,7 +9,7 @@ namespace Game.UI.Abilities.View
     public class AbilityPanelView : MonoBehaviour
     {
         private AbilityPanelPresenter _presenter;
-        [SerializeField] GameObject _abilityButtonPrefab;
+        [SerializeField] private GameObject _abilityButtonPrefab;
         List<AbilityButtonView>  _abilityButtons = new List<AbilityButtonView>();
         
         [Inject]
@@ -19,7 +19,12 @@ namespace Game.UI.Abilities.View
             _presenter.SetView(this);
         }
 
-        public void ShowAbility(AbilityCore ability)
+        public void Start()
+        {
+            _presenter.CreateAbilityButtons();
+        }
+
+        public void CreateAbilityButton(AbilityData ability)
         {
             var abv = Instantiate(_abilityButtonPrefab, transform).GetComponent<AbilityButtonView>();
             abv.SetData(ability.Id, ability.Name , OnAbilityClicked);
@@ -48,9 +53,5 @@ namespace Game.UI.Abilities.View
             _presenter?.Dispose();
         }
 
-        void Update()
-        {
-        
-        }
     }
 }
