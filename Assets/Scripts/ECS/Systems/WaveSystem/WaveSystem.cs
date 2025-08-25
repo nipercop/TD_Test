@@ -12,11 +12,13 @@ namespace Game.ECS.Systems
     [BurstCompile]
     public partial struct WaveSystem : ISystem
     {
+        [BurstCompile]
         public void OnCreate(ref SystemState state)
         {
             state.RequireForUpdate<EnemySpawnData>();
         }
 
+        [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
             var spawnData = SystemAPI.GetSingleton<EnemySpawnData>();

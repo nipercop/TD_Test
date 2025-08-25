@@ -8,6 +8,7 @@ namespace Game.ECS.Systems.Destroy
     [BurstCompile]
     public partial struct DestroyByLowHealthSystem : ISystem
     {
+        [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
             var ecb = new EntityCommandBuffer(Allocator.Temp);

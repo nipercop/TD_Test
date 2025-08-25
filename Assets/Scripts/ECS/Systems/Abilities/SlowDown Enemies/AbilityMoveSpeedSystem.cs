@@ -16,6 +16,7 @@ namespace Game.ECS.Systems
     {
 
         [BurstCompile]
+        [UpdateInGroup(typeof(SimulationSystemGroup))]
         public partial struct AbilityMoveSpeedSystem : ISystem
         {
 

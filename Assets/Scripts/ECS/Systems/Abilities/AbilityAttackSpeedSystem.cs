@@ -13,6 +13,7 @@ namespace Game.ECS.Systems
     [BurstCompile]
     public partial struct AbilityAttackSpeedSystem : ISystem
     {
+        [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
             float deltaTime = SystemAPI.Time.DeltaTime;

@@ -15,6 +15,7 @@ namespace Game.ECS.Systems.Abilities.Injector
             state.RequireForUpdate<AbilityRequest>();
         }
 
+        [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
             var ecb = new EntityCommandBuffer(Unity.Collections.Allocator.Temp);

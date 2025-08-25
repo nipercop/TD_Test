@@ -15,6 +15,7 @@ namespace Game.ECS.Systems.Abilities.Injector
     [BurstCompile]
     public partial struct KamikadzeAbilitySystem : ISystem
     {
+        [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
             foreach (var (towerHealth, towerTransform, entity)
