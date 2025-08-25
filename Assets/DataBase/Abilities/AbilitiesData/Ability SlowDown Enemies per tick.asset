@@ -15,8 +15,6 @@ MonoBehaviour:
   _id: 3
   _name: SlowDown Enemies
   _coolDown: 0
-  _logics:
-  - {fileID: 11400000, guid: d42192238a059f0429665897f0d56eca, type: 2}
   _duration: 10
-  _tickTime: 1
-  _maxStacks: 5
+  _type: 1
+  _value: 0.2

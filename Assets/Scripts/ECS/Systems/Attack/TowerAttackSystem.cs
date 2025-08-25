@@ -20,7 +20,7 @@ namespace Game.ECS.Systems
             foreach (var (towerData , attackCooldown,towerTransform, entity) 
                      in SystemAPI.Query<RefRO<TowerData>, RefRW<AttackCooldownData>, RefRO<LocalTransform>>().WithEntityAccess())
             {
-                attackCooldown.ValueRW.Value -= attackCooldown.ValueRO.Speed * deltaTime;
+                attackCooldown.ValueRW.Value -= attackCooldown.ValueRO.Multiplier * deltaTime;
                 if (attackCooldown.ValueRO.Value > 0)
                 {
                     continue;

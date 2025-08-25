@@ -1315,6 +1315,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1713640561105350658, guid: 673e6f42ebf428c42a25094674b685be, type: 3}
+      propertyPath: _abilityDataBase
+      value: 
+      objectReference: {fileID: 11400000, guid: 89b2430375e756444838a5da0806472b, type: 2}
+    - target: {fileID: 1713640561105350658, guid: 673e6f42ebf428c42a25094674b685be, type: 3}
       propertyPath: _abilityDatabase
       value: 
       objectReference: {fileID: 11400000, guid: 89b2430375e756444838a5da0806472b, type: 2}
@@ -1325,7 +1329,7 @@ PrefabInstance:
     - target: {fileID: 1713640561105350658, guid: 673e6f42ebf428c42a25094674b685be, type: 3}
       propertyPath: 'autoInjectGameObjects.Array.data[0]'
       value: 
-      objectReference: {fileID: 260380752}
+      objectReference: {fileID: 1759769168}
     - target: {fileID: 1713640561105350658, guid: 673e6f42ebf428c42a25094674b685be, type: 3}
       propertyPath: 'autoInjectGameObjects.Array.data[1]'
       value: 

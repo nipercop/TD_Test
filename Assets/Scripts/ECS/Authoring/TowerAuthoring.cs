@@ -29,7 +29,7 @@ namespace Game.ECS.Authoring
                 AddComponent(entity, new AttackCooldownData
                 {
                     Value = authoring.AttackTime,
-                    Speed = 1
+                    Multiplier = 1
                 });
                 AddComponent(entity, new HealthData()
                 {

@@ -1,5 +1,7 @@
 using System;
+using ECS.Systems.Abilities;
 using Game.DataBase.Abilities;
+using Game.ECS.Data.Abilities.Requests;
 using Game.UI.Abilities.Model;
 using Game.UI.Abilities.View;
 using Unity.Entities;
@@ -52,14 +54,14 @@ namespace Game.UI.Abilities.Presenter
             var em = world.EntityManager;
 
             var request = em.CreateEntity();
-            // em.AddComponentData(request, new AbilityRequest());
-            // var buffer = em.AddBuffer<AbilityElementData>(request);
-            // buffer.Add(new AbilityElementData()
-            // {
-            //     Type = AbilityType.Damage ,
-            //     Value = 15,
-            //     Duration = 30
-            // });
+            em.AddComponentData(request, new AbilityRequest());
+            var buffer = em.AddBuffer<AbilityElementData>(request);
+            buffer.Add(new AbilityElementData()
+            {
+                Type = ability.AbilityType,
+                Value = ability.Value,
+                Duration = ability.Duration,
+            });
         }
 
         public void Dispose()

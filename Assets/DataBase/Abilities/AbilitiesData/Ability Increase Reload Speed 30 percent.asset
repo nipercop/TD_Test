@@ -15,6 +15,6 @@ MonoBehaviour:
   _id: 0
   _name: Increase Reload Speed
   _coolDown: 0
-  _logics:
-  - {fileID: 11400000, guid: 3f2cb765cb6d14c419c9f491723a768f, type: 2}
   _duration: 20
+  _type: 0
+  _value: 2

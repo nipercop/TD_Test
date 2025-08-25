@@ -25,7 +25,7 @@ namespace Game.ECS.Systems
                     var buff = buffer[i];
                     if (buff.Type == AbilityType.AttackSpeed)
                     {
-                        cooldownData.ValueRW.Speed = buff.Value;
+                        cooldownData.ValueRW.Multiplier = buff.Value;
                         buff.Duration -= deltaTime;
                         if (buff.Duration <= 0)
                             buffer.RemoveAt(i);

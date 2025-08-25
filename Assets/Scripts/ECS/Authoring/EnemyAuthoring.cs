@@ -35,8 +35,8 @@ namespace Game.ECS.Authoring.Enemy
                     Value = authoring.Damage
                 });
                 AddComponent(entity, new MoveToTargetData());
-                // AddComponent(entity, new AbilityTag());
-                // AddBuffer<AbilityElementData>(entity);
+                AddComponent(entity, new AbilityTag());
+                AddBuffer<AbilityElementData>(entity);
             }
         }
     }

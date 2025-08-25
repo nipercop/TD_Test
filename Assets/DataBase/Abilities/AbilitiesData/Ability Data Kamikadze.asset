@@ -15,6 +15,6 @@ MonoBehaviour:
   _id: 1
   _name: Kamikadze
   _coolDown: 0
-  _logics:
-  - {fileID: 11400000, guid: dca516e3005fd2d4aae2cfd7839459c7, type: 2}
-  - {fileID: 11400000, guid: 1ccd7dab20c76b245bdd0ab0ec3943ea, type: 2}
+  _duration: 7
+  _type: 2
+  _value: 50
