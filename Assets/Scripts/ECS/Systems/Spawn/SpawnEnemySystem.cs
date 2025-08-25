@@ -11,6 +11,7 @@ using Unity.Transforms;
 namespace Game.ECS.Systems
 {
     [BurstCompile]
+    [UpdateInGroup(typeof(InitializationSystemGroup))]
     public partial struct SpawnEnemySystem : ISystem
     {
         
