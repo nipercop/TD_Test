@@ -37,6 +37,11 @@ namespace Game.ECS.Systems
             for (int i = 0; i < spawnData.CountToSpawn; i++)
             {
                 var enemy = ecb.Instantiate(spawnData.EnemyPrefab);
+                ecb.AddComponent(enemy , new MovePathData()
+                {
+                    Path = spawnData.Path,
+                    CurrentWaypoint = 0
+                });
                 ecb.SetComponent(enemy, new MoveToTargetData()
                 {
                     Target = spawnData.Target

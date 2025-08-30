@@ -1,3 +1,4 @@
+using System;
 using Game.ECS.Data;
 using Game.ECS.Data.Damage;
 using Game.ECS.Data.Move;
@@ -8,6 +9,7 @@ using Unity.Collections;
 using Unity.Entities;
 using Unity.Mathematics;
 using Unity.Transforms;
+using UnityEngine;
 
 namespace Game.ECS.Systems
 {
@@ -15,15 +17,24 @@ namespace Game.ECS.Systems
     public partial struct TowerAttackSystem : ISystem
     {
         
+        private EntityQuery _entityQuery;
+        
         public void OnCreate(ref SystemState state)
         {
             state.RequireForUpdate<EndSimulationEntityCommandBufferSystem.Singleton>();
+
+            _entityQuery = SystemAPI.QueryBuilder()
+                .WithAll<TowerData>()
+                .Build();
+            
+            state.RequireForUpdate(_entityQuery);
         }
         
         public void OnUpdate(ref SystemState state)
         {
             var ecb = GetECB(ref state);
             float deltaTime = SystemAPI.Time.DeltaTime;
+            
             foreach (var (towerData , attackCooldown,towerTransform, entity) 
                      in SystemAPI.Query<RefRO<TowerData>, RefRW<AttackCooldownData>, RefRO<LocalTransform>>().WithEntityAccess())
             {
@@ -63,7 +74,9 @@ namespace Game.ECS.Systems
                     {
                         Target = target,
                         LastTargetPosition = targetpos
-                    });     
+                    });
+
+                    
                 }
             }
         }

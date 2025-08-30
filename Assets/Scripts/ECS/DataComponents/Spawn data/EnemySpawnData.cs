@@ -1,3 +1,4 @@
+using Game.ECS.Data.Move;
 using Unity.Entities;
 using Unity.Mathematics;
 
@@ -11,5 +12,6 @@ namespace Game.ECS.Data.Spawn
         public float3 Position;
         public Entity Target;
         public int StartSpawn;
+        public BlobAssetReference<WaypointsData> Path;
     }
 }

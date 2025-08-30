@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 6084971252887924348}
   - component: {fileID: -4509266575191921092}
   m_Layer: 0
-  m_Name: Tower prefab
+  m_Name: Tower Spawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -102,4 +102,6 @@ MonoBehaviour:
   Range: 15
   AttackTime: 1
   Damage: 10
+  TowerVisual: {fileID: 7795487305753270495, guid: 46329d0ed9580054d96f7966180f6f9d, type: 3}
+  Animtor: {fileID: 0}
   ProjectilePrefab: {fileID: 8467625596334925471, guid: 3f58eacc047dfc2448116fd92ac98ea0, type: 3}
