@@ -2,6 +2,7 @@ using Game.ECS.Data;
 using Game.ECS.Data.Damage;
 using Game.ECS.Data.Move;
 using Game.ECS.Data.Projectile;
+using Game.Utility;
 using Unity.Burst;
 using Unity.Collections;
 using Unity.Entities;
@@ -13,9 +14,15 @@ namespace Game.ECS.Systems
     [BurstCompile]
     public partial struct TowerAttackSystem : ISystem
     {
+        
+        public void OnCreate(ref SystemState state)
+        {
+            state.RequireForUpdate<EndSimulationEntityCommandBufferSystem.Singleton>();
+        }
+        
         public void OnUpdate(ref SystemState state)
         {
-            var ecb = new EntityCommandBuffer(Allocator.Temp);
+            var ecb = GetECB(ref state);
             float deltaTime = SystemAPI.Time.DeltaTime;
             foreach (var (towerData , attackCooldown,towerTransform, entity) 
                      in SystemAPI.Query<RefRO<TowerData>, RefRW<AttackCooldownData>, RefRO<LocalTransform>>().WithEntityAccess())
@@ -59,7 +66,13 @@ namespace Game.ECS.Systems
                     });     
                 }
             }
-            ecb.Playback(state.EntityManager);
+        }
+        
+        
+        private EntityCommandBuffer GetECB(ref SystemState state)
+        {
+            var ecbSingleton = SystemAPI.GetSingleton<EndSimulationEntityCommandBufferSystem.Singleton>();
+            return ecbSingleton.CreateCommandBuffer(state.WorldUnmanaged);
         }
     }
 }

@@ -8,10 +8,15 @@ namespace Game.ECS.Systems.Destroy
     [BurstCompile]
     public partial struct DestroyByLowHealthSystem : ISystem
     {
+        public void OnCreate(ref SystemState state)
+        {
+            state.RequireForUpdate<EndSimulationEntityCommandBufferSystem.Singleton>();
+        }
+        
         [BurstCompile]
         public void OnUpdate(ref SystemState state)
         {
-            var ecb = new EntityCommandBuffer(Allocator.Temp);
+            var ecb = GetECB(ref state);
             foreach (var (health, entity) in SystemAPI.Query<RefRO<HealthData>>().WithEntityAccess())
             {
                 if (health.ValueRO.Value <= 0)
@@ -19,7 +24,12 @@ namespace Game.ECS.Systems.Destroy
                     ecb.DestroyEntity(entity);
                 }
             }
-            ecb.Playback(state.EntityManager);
+        }
+
+        private EntityCommandBuffer GetECB(ref SystemState state)
+        {
+            var ecbSingleton = SystemAPI.GetSingleton<EndSimulationEntityCommandBufferSystem.Singleton>();
+            return ecbSingleton.CreateCommandBuffer(state.WorldUnmanaged);
         }
     }
 }

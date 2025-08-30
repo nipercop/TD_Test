@@ -14,11 +14,15 @@ namespace Game.ECS.Systems.Move
     [BurstCompile]
     public partial struct MoveToTargetSystem : ISystem
     {
+        public void OnCreate(ref SystemState state)
+        {
+            state.RequireForUpdate<EndSimulationEntityCommandBufferSystem.Singleton>();
+        }
 
         public void OnUpdate(ref SystemState state)
         {
             float deltaTime = SystemAPI.Time.DeltaTime;
-            var ecb = new EntityCommandBuffer(Unity.Collections.Allocator.Temp);
+            var ecb = GetECB(ref state);
             
             foreach (var (enemyAspect, entity)
                      in SystemAPI.Query<EnemyAspect>().WithEntityAccess().WithAll<EnemyTag>())
@@ -39,7 +43,12 @@ namespace Game.ECS.Systems.Move
                     }
                 }
             }
-            ecb.Playback(state.EntityManager);
+        }
+        
+        private EntityCommandBuffer GetECB(ref SystemState state)
+        {
+            var ecbSingleton = SystemAPI.GetSingleton<EndSimulationEntityCommandBufferSystem.Singleton>();
+            return ecbSingleton.CreateCommandBuffer(state.WorldUnmanaged);
         }
     }
 

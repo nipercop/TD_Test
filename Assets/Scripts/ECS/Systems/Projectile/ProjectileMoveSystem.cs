@@ -12,14 +12,19 @@ namespace Game.ECS.Systems
     [BurstCompile]
     public partial struct ProjectileMoveSystem : ISystem
     {
+        public void OnCreate(ref SystemState state)
+        {
+            state.RequireForUpdate<EndSimulationEntityCommandBufferSystem.Singleton>();
+        }
+
         public void OnUpdate(ref SystemState state)
         {
             float deltaTime = SystemAPI.Time.DeltaTime;
-            var ecb = new EntityCommandBuffer(Unity.Collections.Allocator.Temp);
+            var ecb = GetECB(ref state);
             
             foreach (var (projectileData, moveSpeed, 
                          transform , damage, entity) 
-                     in SystemAPI.Query<RefRW<ProjectileTargetData>,RefRW<MoveSpeedData>,
+                     in SystemAPI.Query<RefRW<ProjectileTargetData>,RefRO<MoveSpeedData>,
                          RefRW<LocalTransform>, RefRO<DamageData>>().WithEntityAccess())
             {
                 
@@ -46,7 +51,12 @@ namespace Game.ECS.Systems
                     ecb.DestroyEntity(entity);
                 }
             }
-            ecb.Playback(state.EntityManager);
+        }
+        
+        private EntityCommandBuffer GetECB(ref SystemState state)
+        {
+            var ecbSingleton = SystemAPI.GetSingleton<EndSimulationEntityCommandBufferSystem.Singleton>();
+            return ecbSingleton.CreateCommandBuffer(state.WorldUnmanaged);
         }
     }
 }
