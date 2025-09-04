@@ -23,37 +23,24 @@ namespace Game.ECS.Authoring
             {
                 var entity = GetEntity(TransformUsageFlags.Dynamic);
                 
-                AddComponent(entity, new TowerSpawnData()
+                AddComponent(entity, new TowerData()
                 {
-                    TowerPrefab = GetEntity(authoring.TowerVisual, TransformUsageFlags.None),
                     Range = authoring.Range,
                     AttackTime = authoring.AttackTime,
                     Damage = authoring.Damage,
-                    ProjectilePrefab = GetEntity(authoring.ProjectilePrefab , TransformUsageFlags.Dynamic),
-                    Health = 50,
-                    Position = authoring.transform.position
+                    ProjectilePrefab = GetEntity( authoring.ProjectilePrefab , TransformUsageFlags.Dynamic)
                 });
-                
-                // AddComponent(entity, new TowerData()
-                // {
-                //     Range = authoring.Range,
-                //     AttackTime = authoring.AttackTime,
-                //     Damage = authoring.Damage,
-                //     ProjectilePrefab = GetEntity( authoring.ProjectilePrefab , TransformUsageFlags.Dynamic)
-                // });
-                // AddComponent(entity, new AttackCooldownData
-                // {
-                //     Value = authoring.AttackTime,
-                //     Multiplier = 1
-                // });
-                // AddComponent(entity, new HealthData()
-                // {
-                //     Value =  50
-                // });
-                // AddComponent(entity, new AbilityTag());
-                // AddBuffer<AbilityElementData>(entity);
-                //
-                // AddComponentObject(entity, authoring.Animtor);
+                AddComponent(entity, new AttackCooldownData
+                {
+                    Value = authoring.AttackTime,
+                    Multiplier = 1
+                });
+                AddComponent(entity, new HealthData()
+                {
+                    Value =  50
+                });
+                AddComponent(entity, new AbilityTag());
+                AddBuffer<AbilityElementData>(entity);
                 
             }
         }

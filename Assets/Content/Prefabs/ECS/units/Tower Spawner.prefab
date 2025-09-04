@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 976502188688073119}
   - component: {fileID: 6084971252887924348}
   - component: {fileID: -4509266575191921092}
+  - component: {fileID: 4936080231586219873}
+  - component: {fileID: -7651294478649326388}
   m_Layer: 0
   m_Name: Tower Spawner
   m_TagString: Untagged
@@ -103,5 +105,39 @@ MonoBehaviour:
   AttackTime: 1
   Damage: 10
   TowerVisual: {fileID: 7795487305753270495, guid: 46329d0ed9580054d96f7966180f6f9d, type: 3}
-  Animtor: {fileID: 0}
+  Animtor: {fileID: 4936080231586219873}
   ProjectilePrefab: {fileID: 8467625596334925471, guid: 3f58eacc047dfc2448116fd92ac98ea0, type: 3}
+--- !u!95 &4936080231586219873
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7795487305753270495}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8008b2caeba16ff479a82dfa62c30c53, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &-7651294478649326388
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7795487305753270495}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c16549610bfe4458aa9389201d072bb6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

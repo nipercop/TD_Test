@@ -24,39 +24,38 @@ partial struct TowerSpawnSystem : ISystem
         state.RequireForUpdate(_entityQuery);
     }
 
-    [BurstCompile]
-    public void OnUpdate(ref SystemState state)
-    {
-        var ecb = GetECB(ref state);
-        foreach (var entity in _entityQuery.ToEntityArray(Allocator.Temp))
-        {
-            var spawnData = state.EntityManager.GetComponentData<TowerSpawnData>(entity);
-            var tower= ecb.Instantiate(spawnData.TowerPrefab);
-
-            ecb.SetComponent(tower, LocalTransform.FromPosition(spawnData.Position));
-            ecb.AddComponent(tower, new TowerData()
-            {
-                Range = spawnData.Range,
-                AttackTime = spawnData.AttackTime,
-                Damage = spawnData.Damage,
-                ProjectilePrefab = spawnData.ProjectilePrefab
-            });
-            ecb.AddComponent(tower, new AttackCooldownData
-            {
-                Value = spawnData.AttackTime,
-                Multiplier = 1
-            });
-            ecb.AddComponent(tower, new HealthData()
-            {
-                Value =  spawnData.Health
-            });
-            ecb.AddComponent(tower, new AbilityTag());
-            ecb.AddBuffer<AbilityElementData>(tower);
-            
-            ecb.DestroyEntity(entity);
-            //ecb.RemoveComponent<TowerSpawnData>(entity);
-        }
-    }
+    // [BurstCompile]
+    // public void OnUpdate(ref SystemState state)
+    // {
+    //     var ecb = GetECB(ref state);
+    //     foreach (var entity in _entityQuery.ToEntityArray(Allocator.Temp))
+    //     {
+    //         var spawnData = state.EntityManager.GetComponentData<TowerSpawnData>(entity);
+    //         var tower= ecb.Instantiate(spawnData.TowerPrefab);
+    //     
+    //         ecb.SetComponent(tower, LocalTransform.FromPosition(spawnData.Position));
+    //         ecb.AddComponent(tower, new TowerData()
+    //         {
+    //             Range = spawnData.Range,
+    //             AttackTime = spawnData.AttackTime,
+    //             Damage = spawnData.Damage,
+    //             ProjectilePrefab = spawnData.ProjectilePrefab
+    //         });
+    //         ecb.AddComponent(tower, new AttackCooldownData
+    //         {
+    //             Value = spawnData.AttackTime,
+    //             Multiplier = 1
+    //         });
+    //         ecb.AddComponent(tower, new HealthData()
+    //         {
+    //             Value =  spawnData.Health
+    //         });
+    //         ecb.AddComponent(tower, new AbilityTag());
+    //         ecb.AddBuffer<AbilityElementData>(tower);
+    //         
+    //         ecb.DestroyEntity(entity);
+    //     }
+    // }
 
     
     private EntityCommandBuffer GetECB(ref SystemState state)

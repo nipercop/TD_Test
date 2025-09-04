@@ -75,8 +75,6 @@ namespace Game.ECS.Systems
                         Target = target,
                         LastTargetPosition = targetpos
                     });
-
-                    
                 }
             }
         }

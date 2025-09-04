@@ -46,7 +46,7 @@ namespace Game.ECS.Systems
                 {
                     Target = spawnData.Target
                 });
-                float3 offset = new float3(UnityEngine.Random.Range(-1f, 1f), 0, UnityEngine.Random.Range(-1f, 1f));
+                float3 offset = new float3(UnityEngine.Random.Range(-1f, 1f) * 2, 0, UnityEngine.Random.Range(-1f, 1f) * 2);
                 ecb.SetComponent(enemy, LocalTransform.FromPosition(spawnData.Position + offset));
             }
             ecb.Playback(state.EntityManager);
